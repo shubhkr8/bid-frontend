@@ -1,0 +1,8 @@
+.rfq__submit {
+  width: 60vw;
+  margin: 1rem auto;
+  h1 {
+    text-align: center;
+    margin: 1rem 0;
+  }
+}
