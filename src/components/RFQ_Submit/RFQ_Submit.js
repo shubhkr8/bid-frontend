@@ -78,7 +78,7 @@ const RFQ_Submit = () => {
           label="RFQ NO"
           name="rfq_no"
           id="rfq_no"
-          type="date"
+          type="text"
           initialValue={formData}
           updateValue={setFormData}
         />
