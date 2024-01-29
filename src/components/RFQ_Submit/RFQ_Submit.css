@@ -1,6 +1,13 @@
 .rfq__submit {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 2rem;
   width: 60vw;
   margin: 1rem auto;
+  #InputBox__rfq_no {
+    grid-column: 1 / span 2;
+  }
+
   h1 {
     text-align: center;
     margin: 1rem 0;

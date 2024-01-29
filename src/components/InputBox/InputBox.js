@@ -18,7 +18,7 @@ const InputBox = (props) => {
   };
 
   return (
-    <div className="InputBox">
+    <div className="InputBox" id={`InputBox__${id}`}>
       <input
         className="InputBox-input"
         id={id}
