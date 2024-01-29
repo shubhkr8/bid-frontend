@@ -5,25 +5,27 @@ import InputBox from "../InputBox/InputBox";
 import InputSelect from "../InputSelect/InputSelect";
 import InputCheckbox from "../InputCheckbox/InputCheckbox";
 
+const intialFormData = {
+  rfq_no: "",
+  rfq_start_date: "",
+  rfq_end_date: "",
+  buyer: "",
+  buyer_no: "",
+  bid_class: "",
+  scope: "",
+  material_series: [],
+  material_line_items: "",
+  basic_value: "",
+  delivery_pin: "",
+  landing_cost: "",
+  gst_freight_tax: "",
+  frieght: "",
+  vendor_id: "",
+  bid_type: "",
+};
+
 const RFQ_Submit = () => {
-  const [formData, setFormData] = useState({
-    rfq_no: "",
-    rfq_start_date: "",
-    rfq_end_date: "",
-    buyer: "",
-    buyer_no: "",
-    bid_class: "",
-    scope: "",
-    material_series: [],
-    material_line_items: "",
-    basic_value: "",
-    delivery_pin: "",
-    landing_cost: "",
-    gst_freight_tax: "",
-    frieght: "",
-    vendor_id: "",
-    bid_type: "",
-  });
+  const [formData, setFormData] = useState(intialFormData);
 
   const FRIEGHT_OPTION = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
@@ -57,16 +59,16 @@ const RFQ_Submit = () => {
     e.preventDefault();
     console.log(formData);
 
-    // try {
-    //   await axios.post(
-    //     "https://giant-cyan-camel.cyclic.app/api/submit-form",
-    //     formData
-    //   );
-    //   console.log("Form submitted successfully!");
-    //   // Add any additional logic or redirect here
-    // } catch (error) {
-    //   console.error("Error submitting form:", error);
-    // }
+    try {
+      await axios.post("http://localhost:5000/api/submit-form", formData);
+      console.log("Form submitted successfully!");
+      // Add any additional logic or redirect here
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+
+    alert("Form Submitted");
+    setFormData(intialFormData);
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -77,6 +79,7 @@ const RFQ_Submit = () => {
           name="rfq_no"
           id="rfq_no"
           type="text"
+          value={formData.rfq_no}
           initialValue={formData}
           updateValue={setFormData}
         />
@@ -87,12 +90,14 @@ const RFQ_Submit = () => {
           type="date"
           initialValue={formData}
           updateValue={setFormData}
+          value={formData.rfq_start_date}
         />
         <InputBox
           label="RFQ END"
           name="rfq_end_date"
           id="rfq_end_date"
           type="date"
+          value={formData.rfq_end_date}
           initialValue={formData}
           updateValue={setFormData}
         />
@@ -101,6 +106,7 @@ const RFQ_Submit = () => {
           name="buyer"
           id="buyer"
           type="text"
+          value={formData.buyer}
           initialValue={formData}
           updateValue={setFormData}
         />
@@ -109,6 +115,7 @@ const RFQ_Submit = () => {
           name="buyer_no"
           id="buyer_no"
           type="text"
+          value={formData.buyer_no}
           initialValue={formData}
           updateValue={setFormData}
         />
@@ -118,6 +125,7 @@ const RFQ_Submit = () => {
           name="scope"
           id="scope"
           type="text"
+          value={formData.scope}
           initialValue={formData}
           updateValue={setFormData}
         />
@@ -126,6 +134,7 @@ const RFQ_Submit = () => {
           name="material_line_items"
           id="material_line_items"
           type="text"
+          value={formData.material_line_items}
           initialValue={formData}
           updateValue={setFormData}
         />
@@ -151,6 +160,7 @@ const RFQ_Submit = () => {
           name="basic_value"
           id="basic_value"
           type="text"
+          value={formData.basic_value}
           initialValue={formData}
           updateValue={setFormData}
         />
@@ -159,6 +169,7 @@ const RFQ_Submit = () => {
           name="delivery_pin"
           id="delivery_pin"
           type="text"
+          value={formData.delivery_pin}
           initialValue={formData}
           updateValue={setFormData}
         />
@@ -167,6 +178,7 @@ const RFQ_Submit = () => {
           name="landing_cost"
           id="landing_cost"
           type="text"
+          value={formData.landing_cost}
           initialValue={formData}
           updateValue={setFormData}
         />
@@ -175,6 +187,7 @@ const RFQ_Submit = () => {
           name="gst_freight_tax"
           id="gst_freight_tax"
           type="text"
+          value={formData.gst_freight_tax}
           initialValue={formData}
           updateValue={setFormData}
         />
