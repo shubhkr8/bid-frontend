@@ -131,18 +131,20 @@ const RFQ_Submit = () => {
         />
         <div className="rfq_material_series">
           <label>Material Series</label>
-          {MATERIAL_SERIES_LIST.map((item, index) => (
-            <InputCheckbox
-              key={index}
-              label={item}
-              name="material_series"
-              id="material_series"
-              type="checkbox"
-              value={item}
-              initialValue={formData}
-              updateValue={setFormData}
-            />
-          ))}
+          <div className="rfq_material_series_list">
+            {MATERIAL_SERIES_LIST.map((item, index) => (
+              <InputCheckbox
+                key={index}
+                label={item}
+                name="material_series"
+                id="material_series"
+                type="checkbox"
+                value={item}
+                initialValue={formData}
+                updateValue={setFormData}
+              />
+            ))}
+          </div>
         </div>
         <InputBox
           label="BASIC VALUE"
@@ -204,8 +206,12 @@ const RFQ_Submit = () => {
           initialValue={formData}
           updateValue={setFormData}
         />
+        <div className="rfq__submit_button">
+          <button type="submit" className="submit_button">
+            Submit
+          </button>
+        </div>
       </div>
-      <button type="submit">Submit</button>
     </form>
   );
 };

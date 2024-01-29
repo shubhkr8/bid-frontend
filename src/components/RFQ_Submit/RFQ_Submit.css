@@ -4,12 +4,48 @@
   gap: 2rem;
   width: 60vw;
   margin: 1rem auto;
+
   #InputBox__rfq_no {
     grid-column: 1 / span 2;
   }
 
-  h1 {
-    text-align: center;
-    margin: 1rem 0;
+  #InputBox__scope {
+    grid-column: 1 / span 2;
   }
+
+  .rfq_material_series {
+    border: 1px solid black;
+    padding: 0 1rem;
+    color: grey;
+  }
+  .rfq_material_series_list {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .rfq__submit_button {
+    grid-column: 1 / span 2;
+    margin: auto;
+    justify-items: center;
+
+    .submit_button {
+      background-color: #f1f1f1;
+      color: black;
+      font-size: 16px;
+      padding: 16px 30px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .submit_button:hover {
+      background-color: black;
+      color: white;
+    }
+  }
+}
+
+h1 {
+  text-align: center;
+  margin: 1rem auto;
 }
