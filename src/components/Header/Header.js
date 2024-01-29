@@ -6,16 +6,7 @@ function Header() {
     <>
       <Navbar bg="primary" data-bs-theme="dark" className="bg-body-tertiary">
         <Container>
-          <Navbar.Brand href="#home">
-            <img
-              alt=""
-              src="/img/logo.jpg"
-              width="30"
-              height="30"
-              className="d-inline-block align-top"
-            />{" "}
-            Resso
-          </Navbar.Brand>
+          <Navbar.Brand href="#home">Resoo</Navbar.Brand>
         </Container>
       </Navbar>
     </>
