@@ -60,7 +60,10 @@ const RFQ_Submit = () => {
     console.log(formData);
 
     try {
-      await axios.post("http://localhost:5000/api/submit-form", formData);
+      await axios.post(
+        "https://giant-cyan-camel.cyclic.app/api/submit-form",
+        formData
+      );
       console.log("Form submitted successfully!");
       // Add any additional logic or redirect here
     } catch (error) {
