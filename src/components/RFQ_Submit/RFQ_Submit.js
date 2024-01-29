@@ -3,6 +3,8 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./RFQ_Submit.css";
 import axios from "axios";
+import InputBox from "../InputBox/InputBox";
+import InputSelect from "../InputSelect/InputSelect";
 
 const RFQ_Submit = () => {
   const [formData, setFormData] = useState({
@@ -19,86 +21,135 @@ const RFQ_Submit = () => {
     bid_type: "",
   });
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const FRIEGHT_OPTION = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+    22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
+    41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
+  ];
+
+  const BID_CLASS_OPTION = ["Public", "Private"];
+
+  const BID_TYPE_OPTION = ["Fresh Bid", "Re-Quote", "Dummy Bid"];
+
+  const VENDOR_ID_OPTION = [
+    "LZ",
+    "HT",
+    "AZ",
+    "GY",
+    "PT",
+    "BMC",
+    "UNO",
+    "HINA",
+    "SGT",
+    "RSC",
+    "OW",
+    "OG",
+    "JEW",
+  ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
 
-    try {
-      await axios.post(
-        "https://giant-cyan-camel.cyclic.app/api/submit-form",
-        formData
-      );
-      console.log("Form submitted successfully!");
-      // Add any additional logic or redirect here
-    } catch (error) {
-      console.error("Error submitting form:", error);
-    }
+    // try {
+    //   await axios.post(
+    //     "https://giant-cyan-camel.cyclic.app/api/submit-form",
+    //     formData
+    //   );
+    //   console.log("Form submitted successfully!");
+    //   // Add any additional logic or redirect here
+    // } catch (error) {
+    //   console.error("Error submitting form:", error);
+    // }
   };
   return (
     <div className="rfq__submit">
       <h1>RFQ Submitted</h1>
+      <InputBox
+        label="RFQ NO"
+        name="rfq_no"
+        id="rfq_no"
+        type="date"
+        initialValue={formData}
+        updateValue={setFormData}
+      />
+      <InputBox
+        label="BUYER"
+        name="buyer"
+        id="buyer"
+        type="text"
+        initialValue={formData}
+        updateValue={setFormData}
+      />
+      <InputBox
+        label="BUYER NUMBER"
+        name="buyer_no"
+        id="buyer_no"
+        type="text"
+        initialValue={formData}
+        updateValue={setFormData}
+      />
+      <InputSelect
+        label="Bid Class"
+        name="bid_class"
+        options={BID_CLASS_OPTION}
+        initialValue={formData}
+        updateValue={setFormData}
+      />
+      <InputBox
+        label="SCOPE"
+        name="scope"
+        id="scope"
+        type="text"
+        initialValue={formData}
+        updateValue={setFormData}
+      />
+      <InputBox
+        label="MATERIALS LINE ITEMS"
+        name="material_line_items"
+        id="material_line_items"
+        type="text"
+        initialValue={formData}
+        updateValue={setFormData}
+      />
+      <InputBox
+        label="DELIVERY PIN CODE"
+        name="delivery_pin"
+        id="delivery_pin"
+        type="text"
+        initialValue={formData}
+        updateValue={setFormData}
+      />
+      <InputBox
+        label="LANDING COST WITH TAX"
+        name="landing_cost"
+        id="landing_cost"
+        type="text"
+        initialValue={formData}
+        updateValue={setFormData}
+      />
+      <InputSelect
+        label="FRIEGHT"
+        name="frieght"
+        options={FRIEGHT_OPTION}
+        initialValue={formData}
+        updateValue={setFormData}
+      />
+      <InputSelect
+        label="BID TYPE"
+        name="bid_type"
+        options={BID_TYPE_OPTION}
+        initialValue={formData}
+        updateValue={setFormData}
+      />
+      <InputSelect
+        label="VENDOR ID"
+        name="vendor_id"
+        options={VENDOR_ID_OPTION}
+        initialValue={formData}
+        updateValue={setFormData}
+      />
       <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="formBasictext">
-          <Form.Label>RFQ NO</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter text"
-            onChange={handleChange}
-            name="rfq_no"
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasictext">
-          <Form.Label>BUYER</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter text"
-            onChange={handleChange}
-            name="buyer"
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasictext">
-          <Form.Label>BUYER NUMBER</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter text"
-            onChange={handleChange}
-            name="buyer_no"
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasictext">
-          <Form.Label>Bid Class</Form.Label>
-          <Form.Select
-            aria-label="Default select example"
-            onChange={handleChange}
-            name="bid_class"
-          >
-            <option>Open this select menu</option>
-            <option value="public">public</option>
-            <option value="private">private</option>
-          </Form.Select>
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasictext">
-          <Form.Label>SCOPE</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter text"
-            onChange={handleChange}
-            name="scope"
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasictext">
-          <Form.Label>MATERIALS LINE ITEMS</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter text"
-            onChange={handleChange}
-            name="material_line_items"
-          />
-        </Form.Group>
         <Form.Group className="mb-3" controlId="formBasictext">
           <Form.Label>Material Series</Form.Label>
           {["checkbox"].map((type) => (
@@ -125,63 +176,6 @@ const RFQ_Submit = () => {
               />
             </div>
           ))}
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasictext">
-          <Form.Label>DELIVERY PIN CODE</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter text"
-            onChange={handleChange}
-            name="delivery_pin"
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasictext">
-          <Form.Label>LANDING COST WITH TAX</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter text"
-            onChange={handleChange}
-            name="landing_cost"
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasictext">
-          <Form.Label>FRIEGHT</Form.Label>
-          <Form.Select
-            aria-label="Default select example"
-            onChange={handleChange}
-            name="frieght"
-          >
-            <option>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </Form.Select>
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasictext">
-          <Form.Label>VENDOR ID</Form.Label>
-          <Form.Select
-            aria-label="Default select example"
-            onChange={handleChange}
-            name="vendor_id"
-          >
-            <option>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </Form.Select>
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasictext">
-          <Form.Label>BID TYPE</Form.Label>
-          <Form.Select
-            aria-label="Default select example"
-            onChange={handleChange}
-            name="bid_type"
-          >
-            <option>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </Form.Select>
         </Form.Group>
         <Button variant="primary" type="submit">
           Submit
