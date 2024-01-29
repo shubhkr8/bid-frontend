@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
 import "./RFQ_Submit.css";
 import axios from "axios";
 import InputBox from "../InputBox/InputBox";
@@ -71,7 +69,7 @@ const RFQ_Submit = () => {
     // }
   };
   return (
-    <>
+    <form onSubmit={handleSubmit}>
       <h1>RFQ Submitted</h1>
       <div className="rfq__submit">
         <InputBox
@@ -114,13 +112,7 @@ const RFQ_Submit = () => {
           initialValue={formData}
           updateValue={setFormData}
         />
-        <InputSelect
-          label="Bid Class"
-          name="bid_class"
-          options={BID_CLASS_OPTION}
-          initialValue={formData}
-          updateValue={setFormData}
-        />
+
         <InputBox
           label="SCOPE"
           name="scope"
@@ -133,6 +125,29 @@ const RFQ_Submit = () => {
           label="MATERIALS LINE ITEMS"
           name="material_line_items"
           id="material_line_items"
+          type="text"
+          initialValue={formData}
+          updateValue={setFormData}
+        />
+        <div className="rfq_material_series">
+          <label>Material Series</label>
+          {MATERIAL_SERIES_LIST.map((item, index) => (
+            <InputCheckbox
+              key={index}
+              label={item}
+              name="material_series"
+              id="material_series"
+              type="checkbox"
+              value={item}
+              initialValue={formData}
+              updateValue={setFormData}
+            />
+          ))}
+        </div>
+        <InputBox
+          label="BASIC VALUE"
+          name="basic_value"
+          id="basic_value"
           type="text"
           initialValue={formData}
           updateValue={setFormData}
@@ -176,34 +191,22 @@ const RFQ_Submit = () => {
           updateValue={setFormData}
         />
         <InputSelect
+          label="Bid Class"
+          name="bid_class"
+          options={BID_CLASS_OPTION}
+          initialValue={formData}
+          updateValue={setFormData}
+        />
+        <InputSelect
           label="VENDOR ID"
           name="vendor_id"
           options={VENDOR_ID_OPTION}
           initialValue={formData}
           updateValue={setFormData}
         />
-        <div className="rfq_material_series">
-          <label>Material Series</label>
-          {MATERIAL_SERIES_LIST.map((item, index) => (
-            <InputCheckbox
-              key={index}
-              label={item}
-              name="material_series"
-              id="material_series"
-              type="checkbox"
-              value={item}
-              initialValue={formData}
-              updateValue={setFormData}
-            />
-          ))}
-        </div>
-        <Form onSubmit={handleSubmit}>
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
       </div>
-    </>
+      <button type="submit">Submit</button>
+    </form>
   );
 };
 
