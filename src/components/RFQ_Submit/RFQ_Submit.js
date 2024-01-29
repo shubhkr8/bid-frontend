@@ -5,6 +5,7 @@ import "./RFQ_Submit.css";
 import axios from "axios";
 import InputBox from "../InputBox/InputBox";
 import InputSelect from "../InputSelect/InputSelect";
+import InputCheckbox from "../InputCheckbox/InputCheckbox";
 
 const RFQ_Submit = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +14,7 @@ const RFQ_Submit = () => {
     buyer_no: "",
     bid_class: "",
     scope: "",
+    material_series: [],
     material_line_items: "",
     delivery_pin: "",
     landing_cost: "",
@@ -47,6 +49,8 @@ const RFQ_Submit = () => {
     "JEW",
   ];
 
+  const MATERIAL_SERIES_LIST = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
@@ -65,11 +69,27 @@ const RFQ_Submit = () => {
   return (
     <div className="rfq__submit">
       <h1>RFQ Submitted</h1>
+      <div className="rfq_material_series">
+        <label>Material Series</label>
+        {MATERIAL_SERIES_LIST.map((item, index) => (
+          <InputCheckbox
+            key={index}
+            label={item}
+            name="material_series"
+            id="material_series"
+            type="checkbox"
+            value={item}
+            initialValue={formData}
+            updateValue={setFormData}
+          />
+        ))}
+      </div>
+
       <InputBox
         label="RFQ NO"
         name="rfq_no"
         id="rfq_no"
-        type="date"
+        type="text"
         initialValue={formData}
         updateValue={setFormData}
       />
