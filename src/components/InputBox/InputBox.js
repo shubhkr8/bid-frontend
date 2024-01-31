@@ -2,20 +2,7 @@ import React from "react";
 import "./InputBox.css";
 
 const InputBox = (props) => {
-  const {
-    id,
-    name,
-    value,
-    type,
-    label,
-    placeholder,
-    initialValue,
-    updateValue,
-  } = props;
-
-  const handleInternalonChange = (e) => {
-    updateValue({ ...initialValue, [e.target.name]: e.target.value });
-  };
+  const { id, value, type, label, placeholder, onChange } = props;
 
   return (
     <div className="InputBox" id={`InputBox__${id}`}>
@@ -23,10 +10,9 @@ const InputBox = (props) => {
         className="InputBox-input"
         id={id}
         type={type}
-        name={name}
         value={value}
         placeholder={placeholder}
-        onChange={handleInternalonChange}
+        onChange={onChange}
       />
       <label htmlFor={id} className="InputBox-label">
         {label}

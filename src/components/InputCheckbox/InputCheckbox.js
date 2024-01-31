@@ -1,27 +1,15 @@
 import React from "react";
+import "./InputCheckbox.css";
 
 const InputCheckbox = (props) => {
-  const { id, name, value, type, label, initialValue, updateValue } = props;
-
-  const handleInternalonChange = (e) => {
-    updateValue({
-      ...initialValue,
-      [e.target.name]: [...initialValue.material_series, e.target.value],
-    });
-  };
+  const { id, type, label, onChange, checked } = props;
 
   return (
     <div className="InputCheckbox">
-      <input
-        className="InputCheckbox-input"
-        id={id}
-        type={type}
-        name={name}
-        value={value}
-        onChange={handleInternalonChange}
-      />
-      <label htmlFor={id} className="InputCheckbox-label">
+      <label className="InputCheckbox__container">
         {label}
+        <input id={id} type={type} onChange={onChange} checked={checked} />
+        <span className="InputCheckbox__checkmark"></span>
       </label>
     </div>
   );

@@ -4,6 +4,13 @@ import axios from "axios";
 import InputBox from "../InputBox/InputBox";
 import InputSelect from "../InputSelect/InputSelect";
 import InputCheckbox from "../InputCheckbox/InputCheckbox";
+import {
+  BID_CLASS_OPTION,
+  BID_TYPE_OPTION,
+  FRIEGHT_OPTION,
+  MATERIAL_SERIES_LIST,
+  VENDOR_ID_OPTION,
+} from "../../utils/Constant";
 
 const intialFormData = {
   rfq_no: "",
@@ -27,33 +34,28 @@ const intialFormData = {
 const RFQ_Submit = () => {
   const [formData, setFormData] = useState(intialFormData);
 
-  const FRIEGHT_OPTION = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-    22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
-    41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
-  ];
+  const handleCheckboxChange = (value) => {
+    const updatedMaterialSeries = [...formData.material_series];
 
-  const BID_CLASS_OPTION = ["Public", "Private"];
+    if (updatedMaterialSeries.includes(value)) {
+      // If the value is already present, remove it
+      updatedMaterialSeries.splice(updatedMaterialSeries.indexOf(value), 1);
+    } else {
+      // If the value is not present, add it
+      updatedMaterialSeries.push(value);
+    }
+    setFormData((prevData) => ({
+      ...prevData,
+      material_series: updatedMaterialSeries,
+    }));
+  };
 
-  const BID_TYPE_OPTION = ["Fresh Bid", "Re-Quote", "Dummy Bid"];
-
-  const VENDOR_ID_OPTION = [
-    "LZ",
-    "HT",
-    "AZ",
-    "GY",
-    "PT",
-    "BMC",
-    "UNO",
-    "HINA",
-    "SGT",
-    "RSC",
-    "OW",
-    "OG",
-    "JEW",
-  ];
-
-  const MATERIAL_SERIES_LIST = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const handleInputChange = (fieldName, value) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [fieldName]: value,
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -79,67 +81,55 @@ const RFQ_Submit = () => {
       <div className="rfq__submit">
         <InputBox
           label="RFQ NO"
-          name="rfq_no"
           id="rfq_no"
           type="text"
           value={formData.rfq_no}
-          initialValue={formData}
-          updateValue={setFormData}
+          onChange={(e) => handleInputChange("rfq_no", e.target.value)}
         />
         <InputBox
           label="RFQ START"
-          name="rfq_start_date"
           id="rfq_start_date"
           type="date"
-          initialValue={formData}
-          updateValue={setFormData}
           value={formData.rfq_start_date}
+          onChange={(e) => handleInputChange("rfq_start_date", e.target.value)}
         />
         <InputBox
           label="RFQ END"
-          name="rfq_end_date"
           id="rfq_end_date"
           type="date"
           value={formData.rfq_end_date}
-          initialValue={formData}
-          updateValue={setFormData}
+          onChange={(e) => handleInputChange("rfq_end_date", e.target.value)}
         />
         <InputBox
           label="BUYER"
-          name="buyer"
           id="buyer"
           type="text"
           value={formData.buyer}
-          initialValue={formData}
-          updateValue={setFormData}
+          onChange={(e) => handleInputChange("buyer", e.target.value)}
         />
         <InputBox
           label="BUYER NUMBER"
-          name="buyer_no"
           id="buyer_no"
           type="text"
           value={formData.buyer_no}
-          initialValue={formData}
-          updateValue={setFormData}
+          onChange={(e) => handleInputChange("buyer_no", e.target.value)}
         />
 
         <InputBox
           label="SCOPE"
-          name="scope"
           id="scope"
           type="text"
           value={formData.scope}
-          initialValue={formData}
-          updateValue={setFormData}
+          onChange={(e) => handleInputChange("scope", e.target.value)}
         />
         <InputBox
           label="MATERIALS LINE ITEMS"
-          name="material_line_items"
           id="material_line_items"
           type="text"
           value={formData.material_line_items}
-          initialValue={formData}
-          updateValue={setFormData}
+          onChange={(e) =>
+            handleInputChange("material_line_items", e.target.value)
+          }
         />
         <div className="rfq_material_series">
           <label>Material Series</label>
@@ -148,79 +138,66 @@ const RFQ_Submit = () => {
               <InputCheckbox
                 key={index}
                 label={item}
-                name="material_series"
                 id="material_series"
                 type="checkbox"
                 value={item}
-                initialValue={formData}
-                updateValue={setFormData}
+                checked={formData.material_series.includes(item)}
+                onChange={() => handleCheckboxChange(item)}
               />
             ))}
           </div>
         </div>
         <InputBox
           label="BASIC VALUE"
-          name="basic_value"
           id="basic_value"
           type="text"
           value={formData.basic_value}
-          initialValue={formData}
-          updateValue={setFormData}
+          onChange={(e) => handleInputChange("basic_value", e.target.value)}
         />
         <InputBox
           label="DELIVERY PIN CODE"
-          name="delivery_pin"
           id="delivery_pin"
           type="text"
           value={formData.delivery_pin}
-          initialValue={formData}
-          updateValue={setFormData}
+          onChange={(e) => handleInputChange("delivery_pin", e.target.value)}
         />
         <InputBox
           label="LANDING COST/PO VALUE"
-          name="landing_cost"
           id="landing_cost"
           type="text"
           value={formData.landing_cost}
-          initialValue={formData}
-          updateValue={setFormData}
+          onChange={(e) => handleInputChange("landing_cost", e.target.value)}
         />
         <InputBox
           label="GST VALUE+INCL FREIGHT(GST)"
-          name="gst_freight_tax"
           id="gst_freight_tax"
           type="text"
           value={formData.gst_freight_tax}
-          initialValue={formData}
-          updateValue={setFormData}
+          onChange={(e) => handleInputChange("gst_freight_tax", e.target.value)}
         />
         <InputSelect
           label="FRIEGHT"
-          name="frieght"
           options={FRIEGHT_OPTION}
-          initialValue={formData}
-          updateValue={setFormData}
+          value={formData.frieght}
+          onChange={(e) => handleInputChange("frieght", e.target.value)}
         />
         <InputSelect
           label="BID TYPE"
-          name="bid_type"
           options={BID_TYPE_OPTION}
-          initialValue={formData}
-          updateValue={setFormData}
+          value={formData.bid_type}
+          onChange={(e) => handleInputChange("bid_type", e.target.value)}
         />
         <InputSelect
           label="Bid Class"
-          name="bid_class"
           options={BID_CLASS_OPTION}
-          initialValue={formData}
-          updateValue={setFormData}
+          value={formData.bid_class}
+          onChange={(e) => handleInputChange("bid_class", e.target.value)}
         />
         <InputSelect
           label="VENDOR ID"
-          name="vendor_id"
           options={VENDOR_ID_OPTION}
-          initialValue={formData}
-          updateValue={setFormData}
+          value={formData.vendor_id}
+          onChange={(e) => handleInputChange("vendor_id", e.target.value)}
         />
         <div className="rfq__submit_button">
           <button type="submit" className="submit_button">
