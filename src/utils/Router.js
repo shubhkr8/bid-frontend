@@ -4,6 +4,7 @@ import App from "../App";
 import SubmitForm from "../pages/SubmitForm/SubmitForm";
 import AcknowledgeForm from "../pages/AcknowledgeForm/AcknowledgeForm";
 import QueryTable from "../pages/QueryTable/QueryTable";
+import Home from "../pages/Home/Home";
 
 export const appRouter = createBrowserRouter([
   {
@@ -13,7 +14,7 @@ export const appRouter = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <h1>home</h1>,
+        element: <Home />,
       },
       {
         path: "/rfqsubmit",

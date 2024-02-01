@@ -51,8 +51,9 @@ const AcknowledgeForm = () => {
     console.log(formData);
 
     try {
+      // await axios.post("http://localhost:5000/api/acknowledge-form", formData);
       await axios.post(
-        "https://giant-cyan-camel.cyclic.app/api/submit-form",
+        "https://giant-cyan-camel.cyclic.app/api/acknowledge-form",
         formData
       );
       console.log("Form submitted successfully!");
