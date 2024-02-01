@@ -1,16 +1,10 @@
 import React, { useState } from "react";
-import "./RFQ_Submit.css";
+import "./AcknowledgeForm.css";
 import axios from "axios";
-import InputBox from "../InputBox/InputBox";
-import InputSelect from "../InputSelect/InputSelect";
-import InputCheckbox from "../InputCheckbox/InputCheckbox";
-import {
-  BID_CLASS_OPTION,
-  BID_TYPE_OPTION,
-  FRIEGHT_OPTION,
-  MATERIAL_SERIES_LIST,
-  VENDOR_ID_OPTION,
-} from "../../utils/Constant";
+import InputBox from "../../components/InputBox/InputBox";
+import InputSelect from "../../components/InputSelect/InputSelect";
+import InputCheckbox from "../../components/InputCheckbox/InputCheckbox";
+import { BID_TYPE_OPTION, MATERIAL_SERIES_LIST } from "../../utils/Constant";
 
 const intialFormData = {
   rfq_no: "",
@@ -18,20 +12,15 @@ const intialFormData = {
   rfq_end_date: "",
   buyer: "",
   buyer_no: "",
-  bid_class: "",
   scope: "",
   material_series: [],
   material_line_items: "",
-  basic_value: "",
+  shipping_address: "",
   delivery_pin: "",
-  landing_cost: "",
-  gst_freight_tax: "",
-  frieght: "",
-  vendor_id: "",
   bid_type: "",
 };
 
-const RFQ_Submit = () => {
+const AcknowledgeForm = () => {
   const [formData, setFormData] = useState(intialFormData);
 
   const handleCheckboxChange = (value) => {
@@ -62,8 +51,9 @@ const RFQ_Submit = () => {
     console.log(formData);
 
     try {
+      // await axios.post("http://localhost:5000/api/acknowledge-form", formData);
       await axios.post(
-        "https://giant-cyan-camel.cyclic.app/api/submit-form",
+        "https://giant-cyan-camel.cyclic.app/api/acknowledge-form",
         formData
       );
       console.log("Form submitted successfully!");
@@ -76,8 +66,8 @@ const RFQ_Submit = () => {
     setFormData(intialFormData);
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>RFQ Submitted</h1>
+    <form onSubmit={handleSubmit} className="Rfq_form">
+      <h1>RFQ Acknowledgement</h1>
       <div className="rfq__submit">
         <InputBox
           label="RFQ NO"
@@ -148,11 +138,13 @@ const RFQ_Submit = () => {
           </div>
         </div>
         <InputBox
-          label="BASIC VALUE"
-          id="basic_value"
+          label="SHIP TO"
+          id="shipping_address"
           type="text"
           value={formData.basic_value}
-          onChange={(e) => handleInputChange("basic_value", e.target.value)}
+          onChange={(e) =>
+            handleInputChange("shipping_address", e.target.value)
+          }
         />
         <InputBox
           label="DELIVERY PIN CODE"
@@ -161,43 +153,11 @@ const RFQ_Submit = () => {
           value={formData.delivery_pin}
           onChange={(e) => handleInputChange("delivery_pin", e.target.value)}
         />
-        <InputBox
-          label="LANDING COST/PO VALUE"
-          id="landing_cost"
-          type="text"
-          value={formData.landing_cost}
-          onChange={(e) => handleInputChange("landing_cost", e.target.value)}
-        />
-        <InputBox
-          label="GST VALUE+INCL FREIGHT(GST)"
-          id="gst_freight_tax"
-          type="text"
-          value={formData.gst_freight_tax}
-          onChange={(e) => handleInputChange("gst_freight_tax", e.target.value)}
-        />
-        <InputSelect
-          label="FRIEGHT"
-          options={FRIEGHT_OPTION}
-          value={formData.frieght}
-          onChange={(e) => handleInputChange("frieght", e.target.value)}
-        />
         <InputSelect
           label="BID TYPE"
           options={BID_TYPE_OPTION}
           value={formData.bid_type}
           onChange={(e) => handleInputChange("bid_type", e.target.value)}
-        />
-        <InputSelect
-          label="Bid Class"
-          options={BID_CLASS_OPTION}
-          value={formData.bid_class}
-          onChange={(e) => handleInputChange("bid_class", e.target.value)}
-        />
-        <InputSelect
-          label="VENDOR ID"
-          options={VENDOR_ID_OPTION}
-          value={formData.vendor_id}
-          onChange={(e) => handleInputChange("vendor_id", e.target.value)}
         />
         <div className="rfq__submit_button">
           <button type="submit" className="submit_button">
@@ -209,4 +169,4 @@ const RFQ_Submit = () => {
   );
 };
 
-export default RFQ_Submit;
+export default AcknowledgeForm;

@@ -1,12 +1,14 @@
 import React from "react";
-import RFQSubmit from "./components/RFQ_Submit/RFQ_Submit";
 import Header from "./components/Header/Header";
+import { Outlet } from "react-router-dom";
+import Footer from "./components/footer/Footer";
 
 function App() {
   return (
     <>
       <Header />
-      <RFQSubmit />
+      <Outlet />
+      <Footer />
     </>
   );
 }

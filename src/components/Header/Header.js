@@ -1,15 +1,17 @@
-import Container from "react-bootstrap/Container";
-import Navbar from "react-bootstrap/Navbar";
-
+import { Link } from "react-router-dom";
+import "./Header.css";
 function Header() {
   return (
-    <>
-      <Navbar bg="primary" data-bs-theme="dark" className="bg-body-tertiary">
-        <Container>
-          <Navbar.Brand href="#home">Resoo</Navbar.Brand>
-        </Container>
-      </Navbar>
-    </>
+    <div className="header_components">
+      <div className="logo">
+        <h1>Resoo</h1>
+      </div>
+      <div className="header_links">
+        <Link to="/rfqack">Acknowledge</Link>
+        <Link to="/rfqsubmit">Submit</Link>
+        <Link to="/rfqtable">Query</Link>
+      </div>
+    </div>
   );
 }
 
