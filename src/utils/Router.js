@@ -1,8 +1,9 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import RFQ_Submit from "../pages/RFQ_Submit/RFQ_Submit";
-import RFQ_Acknowledge from "../pages/RFQ_Acknowledge/RFQ_Acknowledge";
+import SubmitForm from "../pages/SubmitForm/SubmitForm";
+import AcknowledgeForm from "../pages/AcknowledgeForm/AcknowledgeForm";
+import QueryTable from "../pages/QueryTable/QueryTable";
 
 export const appRouter = createBrowserRouter([
   {
@@ -16,11 +17,15 @@ export const appRouter = createBrowserRouter([
       },
       {
         path: "/rfqsubmit",
-        element: <RFQ_Submit />,
+        element: <SubmitForm />,
       },
       {
         path: "/rfqack",
-        element: <RFQ_Acknowledge />,
+        element: <AcknowledgeForm />,
+      },
+      {
+        path: "/rfqtable",
+        element: <QueryTable />,
       },
     ],
   },

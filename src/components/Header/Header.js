@@ -19,6 +19,9 @@ function Header() {
               <Nav.Link>
                 <Link to="/rfqsubmit">Submit</Link>
               </Nav.Link>
+              <Nav.Link>
+                <Link to="/rfqtable">Query</Link>
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
