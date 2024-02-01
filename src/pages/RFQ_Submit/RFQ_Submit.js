@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./RFQ_Submit.css";
 import axios from "axios";
-import InputBox from "../InputBox/InputBox";
-import InputSelect from "../InputSelect/InputSelect";
-import InputCheckbox from "../InputCheckbox/InputCheckbox";
+import InputBox from "../../components/InputBox/InputBox";
+import InputSelect from "../../components/InputSelect/InputSelect";
+import InputCheckbox from "../../components/InputCheckbox/InputCheckbox";
 import {
   BID_CLASS_OPTION,
   BID_TYPE_OPTION,
