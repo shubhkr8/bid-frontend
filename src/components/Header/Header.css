@@ -1,0 +1,33 @@
+.header_components {
+  display: flex;
+  flex: 1;
+  height: 10vh;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  padding: 0 2rem;
+}
+h1 {
+  margin: 0px auto;
+}
+
+.header_links {
+  display: flex;
+  flex: 2;
+  justify-content: center;
+  gap: 2rem;
+  color: white;
+  text-decoration: none;
+
+  a:link,
+  a:visited {
+    color: white;
+    text-decoration: none;
+  }
+
+  a:hover,
+  a:active {
+    color: grey;
+  }
+}

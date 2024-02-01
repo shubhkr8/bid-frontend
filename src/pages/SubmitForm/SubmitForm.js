@@ -76,7 +76,7 @@ const SubmitForm = () => {
     setFormData(intialFormData);
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="Rfq_form">
       <h1>RFQ Submitted</h1>
       <div className="rfq__submit">
         <InputBox
