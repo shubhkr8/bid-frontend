@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -143,10 +143,40 @@ const QueryTable = () => {
         console.error("Error fetching data:", error);
       });
   }, []);
+  const rowSelectionType = "multiple";
+  const onSelectionChanged = (event) => {
+    console.log(event);
+  };
+
+  const gridApiRef = useRef(null);
+
+  const onGridReady = (params) => {
+    gridApiRef.current = params.api;
+  };
+
+  const onExportClick = () => {
+    if (gridApiRef.current) {
+      gridApiRef.current.exportDataAsCsv();
+    } else {
+      console.error("Grid API is not initialized.");
+    }
+  };
 
   return (
-    <div className="ag-theme-alpine" style={{ height: 400, width: "100%" }}>
-      <AgGridReact columnDefs={columnDefs} rowData={rowData} />
+    <div>
+      <button className="button-29" onClick={() => onExportClick()}>
+        Export
+      </button>
+      <div className="ag-theme-alpine" style={{ height: 400, width: "100%" }}>
+        <AgGridReact
+          columnDefs={columnDefs}
+          rowData={rowData}
+          rowSelection={rowSelectionType}
+          onSelectionChanged={onSelectionChanged}
+          onGridReady={onGridReady}
+          // onGridReady
+        />
+      </div>
     </div>
   );
 };
