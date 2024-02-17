@@ -5,6 +5,7 @@ import InputBox from "../../components/InputBox/InputBox";
 import InputSelect from "../../components/InputSelect/InputSelect";
 import InputCheckbox from "../../components/InputCheckbox/InputCheckbox";
 import { BID_TYPE_OPTION, MATERIAL_SERIES_LIST } from "../../utils/Constant";
+import Loader from "../../loader/Loader";
 
 const intialFormData = {
   rfq_no: "",
@@ -22,6 +23,7 @@ const intialFormData = {
 
 const AcknowledgeForm = () => {
   const [formData, setFormData] = useState(intialFormData);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCheckboxChange = (value) => {
     const updatedMaterialSeries = [...formData.material_series];
@@ -48,7 +50,7 @@ const AcknowledgeForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    setIsLoading(true);
 
     try {
       // await axios.post("http://localhost:5000/api/acknowledge-form", formData);
@@ -61,13 +63,14 @@ const AcknowledgeForm = () => {
     } catch (error) {
       console.error("Error submitting form:", error);
     }
-
+    setIsLoading(false);
     alert("Form Submitted");
     setFormData(intialFormData);
   };
   return (
     <form onSubmit={handleSubmit} className="Rfq_form">
       <h1>RFQ Acknowledgement</h1>
+      {isLoading && <Loader />}
       <div className="rfq__submit">
         <InputBox
           label="RFQ NO"

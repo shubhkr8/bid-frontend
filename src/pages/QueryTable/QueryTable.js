@@ -18,6 +18,7 @@ const QueryTable = () => {
       filterParams: {
         debounceMs: 0,
         buttons: ["reset"],
+        cellStyle: (params) => console.log(params.value),
       },
     },
     {
@@ -174,6 +175,7 @@ const QueryTable = () => {
           rowSelection={rowSelectionType}
           onSelectionChanged={onSelectionChanged}
           onGridReady={onGridReady}
+          // frameworkComponents={{ valueCellRenderer }}
           // onGridReady
         />
       </div>
