@@ -23,21 +23,21 @@ const AcknowledgeForm = () => {
   const [formData, setFormData] = useState(intialFormData);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleCheckboxChange = (value) => {
-    const updatedMaterialSeries = [...formData.material_series];
+  // const handleCheckboxChange = (value) => {
+  //   const updatedMaterialSeries = [...formData.material_series];
 
-    if (updatedMaterialSeries.includes(value)) {
-      // If the value is already present, remove it
-      updatedMaterialSeries.splice(updatedMaterialSeries.indexOf(value), 1);
-    } else {
-      // If the value is not present, add it
-      updatedMaterialSeries.push(value);
-    }
-    setFormData((prevData) => ({
-      ...prevData,
-      material_series: updatedMaterialSeries,
-    }));
-  };
+  //   if (updatedMaterialSeries.includes(value)) {
+  //     // If the value is already present, remove it
+  //     updatedMaterialSeries.splice(updatedMaterialSeries.indexOf(value), 1);
+  //   } else {
+  //     // If the value is not present, add it
+  //     updatedMaterialSeries.push(value);
+  //   }
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     material_series: updatedMaterialSeries,
+  //   }));
+  // };
 
   const handleInputChange = (fieldName, value) => {
     setFormData((prevData) => ({
