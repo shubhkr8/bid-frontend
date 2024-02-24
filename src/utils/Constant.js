@@ -6,7 +6,7 @@ export const FRIEGHT_OPTION = [
   42, 43, 44, 45, 46, 47, 48, 49, 50,
 ];
 
-export const BID_TYPE_OPTION = ["Fresh Bid", "Re-Quote", "Dummy Bid"];
+export const BID_TYPE_OPTION = ["public", "private", "Dummy Bid"];
 
 export const VENDOR_ID_OPTION = [
   "LZ",

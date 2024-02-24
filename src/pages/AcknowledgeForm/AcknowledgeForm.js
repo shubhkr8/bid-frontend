@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import "./AcknowledgeForm.css";
 import axios from "axios";
 import InputBox from "../../components/InputBox/InputBox";
-import InputSelect from "../../components/InputSelect/InputSelect";
-import InputCheckbox from "../../components/InputCheckbox/InputCheckbox";
-import { BID_TYPE_OPTION, MATERIAL_SERIES_LIST } from "../../utils/Constant";
+// import InputSelect from "../../components/InputSelect/InputSelect";
+// import InputCheckbox from "../../components/InputCheckbox/InputCheckbox";
+// import { BID_TYPE_OPTION, MATERIAL_SERIES_LIST } from "../../utils/Constant";
 import Loader from "../../loader/Loader";
 
 const intialFormData = {
@@ -15,10 +15,8 @@ const intialFormData = {
   buyer_no: "",
   scope: "",
   material_series: [],
-  material_line_items: "",
-  shipping_address: "",
-  delivery_pin: "",
   bid_type: "",
+  buyer_type: "",
 };
 
 const AcknowledgeForm = () => {
@@ -82,14 +80,14 @@ const AcknowledgeForm = () => {
         <InputBox
           label="RFQ START"
           id="rfq_start_date"
-          type="date"
+          type="type"
           value={formData.rfq_start_date}
           onChange={(e) => handleInputChange("rfq_start_date", e.target.value)}
         />
         <InputBox
           label="RFQ END"
           id="rfq_end_date"
-          type="date"
+          type="text"
           value={formData.rfq_end_date}
           onChange={(e) => handleInputChange("rfq_end_date", e.target.value)}
         />
@@ -124,44 +122,14 @@ const AcknowledgeForm = () => {
             handleInputChange("material_line_items", e.target.value)
           }
         />
-        <div className="rfq_material_series">
-          <label>Material Series</label>
-          <div className="rfq_material_series_list">
-            {MATERIAL_SERIES_LIST.map((item, index) => (
-              <InputCheckbox
-                key={index}
-                label={item}
-                id="material_series"
-                type="checkbox"
-                value={item}
-                checked={formData.material_series.includes(item)}
-                onChange={() => handleCheckboxChange(item)}
-              />
-            ))}
-          </div>
-        </div>
         <InputBox
-          label="SHIP TO"
-          id="shipping_address"
-          type="text"
-          value={formData.basic_value}
-          onChange={(e) =>
-            handleInputChange("shipping_address", e.target.value)
-          }
-        />
-        <InputBox
-          label="DELIVERY PIN CODE"
-          id="delivery_pin"
-          type="text"
-          value={formData.delivery_pin}
-          onChange={(e) => handleInputChange("delivery_pin", e.target.value)}
-        />
-        <InputSelect
           label="BID TYPE"
-          options={BID_TYPE_OPTION}
-          value={formData.bid_type}
-          onChange={(e) => handleInputChange("bid_type", e.target.value)}
+          id="buyer_no"
+          type="text"
+          value={formData.buyer_type}
+          onChange={(e) => handleInputChange("buyer_type", e.target.value)}
         />
+
         <div className="rfq__submit_button">
           <button type="submit" className="submit_button">
             Submit

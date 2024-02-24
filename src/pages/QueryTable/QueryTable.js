@@ -76,17 +76,7 @@ const QueryTable = () => {
         buttons: ["reset"],
       },
     },
-    {
-      headerName: "Material Series",
-      field: "material_series",
-      sortable: true,
-      filter: true,
-      floatingFilter: true,
-      filterParams: {
-        debounceMs: 0,
-        buttons: ["reset"],
-      },
-    },
+
     {
       headerName: "Material Line Items",
       field: "material_line_items",
@@ -98,17 +88,7 @@ const QueryTable = () => {
         buttons: ["reset"],
       },
     },
-    {
-      headerName: "Shipping Address",
-      field: "shipping_address",
-      sortable: true,
-      filter: true,
-      floatingFilter: true,
-      filterParams: {
-        debounceMs: 0,
-        buttons: ["reset"],
-      },
-    },
+    // s
     {
       headerName: "Bid Type",
       field: "bid_type",
@@ -120,17 +100,17 @@ const QueryTable = () => {
         buttons: ["reset"],
       },
     },
-    {
-      headerName: "Pin Code",
-      field: "delivery_pin",
-      sortable: true,
-      filter: true,
-      floatingFilter: true,
-      filterParams: {
-        debounceMs: 0,
-        buttons: ["reset"],
-      },
-    },
+    // {
+    //   headerName: "Pin Code",
+    //   field: "delivery_pin",
+    //   sortable: true,
+    //   filter: true,
+    //   floatingFilter: true,
+    //   filterParams: {
+    //     debounceMs: 0,
+    //     buttons: ["reset"],
+    //   },
+    // },
   ];
 
   useEffect(() => {
