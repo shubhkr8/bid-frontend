@@ -16,7 +16,6 @@ const intialFormData = {
   scope: "",
   material_series: [],
   bid_type: "",
-  buyer_type: "",
 };
 
 const AcknowledgeForm = () => {
@@ -62,7 +61,7 @@ const AcknowledgeForm = () => {
       console.error("Error submitting form:", error);
     }
     setIsLoading(false);
-    alert("Form Submitted");
+    alert(" Acknowledge Form Submitted Successfully");
     setFormData(intialFormData);
   };
   return (
@@ -124,10 +123,10 @@ const AcknowledgeForm = () => {
         />
         <InputBox
           label="BID TYPE"
-          id="buyer_no"
+          id="bid_type"
           type="text"
-          value={formData.buyer_type}
-          onChange={(e) => handleInputChange("buyer_type", e.target.value)}
+          value={formData.bid_type}
+          onChange={(e) => handleInputChange("bid_type", e.target.value)}
         />
 
         <div className="rfq__submit_button">
