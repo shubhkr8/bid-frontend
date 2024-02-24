@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -18,6 +18,7 @@ const QueryTable = () => {
       filterParams: {
         debounceMs: 0,
         buttons: ["reset"],
+        cellStyle: (params) => console.log(params.value),
       },
     },
     {
@@ -75,17 +76,7 @@ const QueryTable = () => {
         buttons: ["reset"],
       },
     },
-    {
-      headerName: "Material Series",
-      field: "material_series",
-      sortable: true,
-      filter: true,
-      floatingFilter: true,
-      filterParams: {
-        debounceMs: 0,
-        buttons: ["reset"],
-      },
-    },
+
     {
       headerName: "Material Line Items",
       field: "material_line_items",
@@ -97,17 +88,7 @@ const QueryTable = () => {
         buttons: ["reset"],
       },
     },
-    {
-      headerName: "Shipping Address",
-      field: "shipping_address",
-      sortable: true,
-      filter: true,
-      floatingFilter: true,
-      filterParams: {
-        debounceMs: 0,
-        buttons: ["reset"],
-      },
-    },
+    // s
     {
       headerName: "Bid Type",
       field: "bid_type",
@@ -119,17 +100,17 @@ const QueryTable = () => {
         buttons: ["reset"],
       },
     },
-    {
-      headerName: "Pin Code",
-      field: "delivery_pin",
-      sortable: true,
-      filter: true,
-      floatingFilter: true,
-      filterParams: {
-        debounceMs: 0,
-        buttons: ["reset"],
-      },
-    },
+    // {
+    //   headerName: "Pin Code",
+    //   field: "delivery_pin",
+    //   sortable: true,
+    //   filter: true,
+    //   floatingFilter: true,
+    //   filterParams: {
+    //     debounceMs: 0,
+    //     buttons: ["reset"],
+    //   },
+    // },
   ];
 
   useEffect(() => {
@@ -143,10 +124,41 @@ const QueryTable = () => {
         console.error("Error fetching data:", error);
       });
   }, []);
+  const rowSelectionType = "multiple";
+  const onSelectionChanged = (event) => {
+    console.log(event);
+  };
+
+  const gridApiRef = useRef(null);
+
+  const onGridReady = (params) => {
+    gridApiRef.current = params.api;
+  };
+
+  const onExportClick = () => {
+    if (gridApiRef.current) {
+      gridApiRef.current.exportDataAsCsv();
+    } else {
+      console.error("Grid API is not initialized.");
+    }
+  };
 
   return (
-    <div className="ag-theme-alpine" style={{ height: 400, width: "100%" }}>
-      <AgGridReact columnDefs={columnDefs} rowData={rowData} />
+    <div>
+      <button className="button-29" onClick={() => onExportClick()}>
+        Export
+      </button>
+      <div className="ag-theme-alpine" style={{ height: 400, width: "100%" }}>
+        <AgGridReact
+          columnDefs={columnDefs}
+          rowData={rowData}
+          rowSelection={rowSelectionType}
+          onSelectionChanged={onSelectionChanged}
+          onGridReady={onGridReady}
+          // frameworkComponents={{ valueCellRenderer }}
+          // onGridReady
+        />
+      </div>
     </div>
   );
 };
