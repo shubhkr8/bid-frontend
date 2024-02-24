@@ -14,7 +14,7 @@ const intialFormData = {
   buyer: "",
   buyer_no: "",
   scope: "",
-  material_series: [],
+  material_line_items: "",
   bid_type: "",
 };
 
