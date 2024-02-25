@@ -50,6 +50,7 @@ const AcknowledgeForm = () => {
         formDataWithTimestamp
       );
       console.log("Form submitted successfully!");
+      serailNoRef.current = serailNoRef.current + 1;
       // Add any additional logic or redirect here
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -66,7 +67,7 @@ const AcknowledgeForm = () => {
         const result = await fetchDataFromApi(
           "https://giant-cyan-camel.cyclic.app/api/form-no"
         );
-        serailNoRef.current = result;
+        serailNoRef.current = result.nextSerialNo;
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
