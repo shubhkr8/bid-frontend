@@ -4,11 +4,37 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import axios from "axios";
 import "./QueryTable.css";
+import Loader from "../../loader/Loader";
+
+// const localurl = "http://localhost:5000/api/ack-data";
 
 const QueryTable = () => {
   const [rowData, setRowData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const columnDefs = [
+    {
+      headerName: "Serial Number",
+      field: "serial_no",
+      sortable: true,
+      filter: true,
+      floatingFilter: true,
+      filterParams: {
+        debounceMs: 0,
+        buttons: ["reset"],
+      },
+    },
+    {
+      headerName: "Timestamp",
+      field: "timestamp",
+      sortable: true,
+      filter: true,
+      floatingFilter: true,
+      filterParams: {
+        debounceMs: 0,
+        buttons: ["reset"],
+      },
+    },
     {
       headerName: "RFQ Number",
       field: "rfq_no",
@@ -18,7 +44,6 @@ const QueryTable = () => {
       filterParams: {
         debounceMs: 0,
         buttons: ["reset"],
-        cellStyle: (params) => console.log(params.value),
       },
     },
     {
@@ -88,7 +113,6 @@ const QueryTable = () => {
         buttons: ["reset"],
       },
     },
-    // s
     {
       headerName: "Bid Type",
       field: "bid_type",
@@ -100,30 +124,36 @@ const QueryTable = () => {
         buttons: ["reset"],
       },
     },
-    // {
-    //   headerName: "Pin Code",
-    //   field: "delivery_pin",
-    //   sortable: true,
-    //   filter: true,
-    //   floatingFilter: true,
-    //   filterParams: {
-    //     debounceMs: 0,
-    //     buttons: ["reset"],
-    //   },
-    // },
+    {
+      headerName: "User Name",
+      field: "usr_name",
+      sortable: true,
+      filter: true,
+      floatingFilter: true,
+      filterParams: {
+        debounceMs: 0,
+        buttons: ["reset"],
+      },
+    },
   ];
 
   useEffect(() => {
-    axios
-      // .get("http://localhost:5000/api/ack-data")
-      .get("https://giant-cyan-camel.cyclic.app/api/ack-data")
-      .then((response) => {
-        setRowData(response.data);
-      })
-      .catch((error) => {
+    setIsLoading(true);
+    const fetchData = async () => {
+      try {
+        const result = await fetchDataFromApi(
+          "https://giant-cyan-camel.cyclic.app/api/ack-data"
+        );
+        setRowData(result);
+        setIsLoading(false);
+      } catch (error) {
         console.error("Error fetching data:", error);
-      });
+        setIsLoading(false);
+      }
+    };
+    fetchData();
   }, []);
+
   const rowSelectionType = "multiple";
   const onSelectionChanged = (event) => {
     console.log(event);
@@ -148,7 +178,8 @@ const QueryTable = () => {
       <button className="button-29" onClick={() => onExportClick()}>
         Export
       </button>
-      <div className="ag-theme-alpine" style={{ height: 400, width: "100%" }}>
+      {isLoading && <Loader />}
+      <div className="ag-theme-alpine" style={{ height: 600, width: "100%" }}>
         <AgGridReact
           columnDefs={columnDefs}
           rowData={rowData}
@@ -164,3 +195,12 @@ const QueryTable = () => {
 };
 
 export default QueryTable;
+
+export const fetchDataFromApi = async (url) => {
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    throw new Error(`Error fetching data: ${error.message}`);
+  }
+};

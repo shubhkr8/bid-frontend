@@ -16,6 +16,7 @@ const intialFormData = {
   scope: "",
   material_line_items: "",
   bid_type: "",
+  usr_name: "",
 };
 
 const AcknowledgeForm = () => {
@@ -47,6 +48,12 @@ const AcknowledgeForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Add a timestamp property to the form data
+    const formDataWithTimestamp = {
+      ...formData,
+      timestamp: formatTimestamp(new Date()),
+    };
+    console.log(formDataWithTimestamp);
     setIsLoading(true);
 
     try {
@@ -70,6 +77,13 @@ const AcknowledgeForm = () => {
       {isLoading && <Loader />}
       <div className="rfq__submit">
         <InputBox
+          label="USER NAME"
+          id="usr_name"
+          type="text"
+          value={formData.usr_name}
+          onChange={(e) => handleInputChange("usr_name", e.target.value)}
+        />
+        <InputBox
           label="RFQ NO"
           id="rfq_no"
           type="text"
@@ -79,7 +93,7 @@ const AcknowledgeForm = () => {
         <InputBox
           label="RFQ START"
           id="rfq_start_date"
-          type="type"
+          type="text"
           value={formData.rfq_start_date}
           onChange={(e) => handleInputChange("rfq_start_date", e.target.value)}
         />
@@ -104,7 +118,6 @@ const AcknowledgeForm = () => {
           value={formData.buyer_no}
           onChange={(e) => handleInputChange("buyer_no", e.target.value)}
         />
-
         <InputBox
           label="SCOPE"
           id="scope"
@@ -128,7 +141,6 @@ const AcknowledgeForm = () => {
           value={formData.bid_type}
           onChange={(e) => handleInputChange("bid_type", e.target.value)}
         />
-
         <div className="rfq__submit_button">
           <button type="submit" className="submit_button">
             Submit
@@ -140,3 +152,21 @@ const AcknowledgeForm = () => {
 };
 
 export default AcknowledgeForm;
+
+export const formatTimestamp = (timestamp) => {
+  const options = {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  };
+  const formattedTime = new Date(timestamp).toLocaleTimeString(
+    "en-GB",
+    options
+  );
+
+  // Remove the comma between date and time
+  return `${formattedTime.replace(",", "")}`;
+};
