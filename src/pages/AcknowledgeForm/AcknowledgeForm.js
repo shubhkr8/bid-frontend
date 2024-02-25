@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./AcknowledgeForm.css";
 import axios from "axios";
 import InputBox from "../../components/InputBox/InputBox";
@@ -6,6 +6,7 @@ import InputBox from "../../components/InputBox/InputBox";
 // import InputCheckbox from "../../components/InputCheckbox/InputCheckbox";
 // import { BID_TYPE_OPTION, MATERIAL_SERIES_LIST } from "../../utils/Constant";
 import Loader from "../../loader/Loader";
+import { fetchDataFromApi } from "../QueryTable/QueryTable";
 
 const intialFormData = {
   rfq_no: "",
@@ -20,24 +21,9 @@ const intialFormData = {
 };
 
 const AcknowledgeForm = () => {
+  const serailNoRef = useRef(0);
   const [formData, setFormData] = useState(intialFormData);
   const [isLoading, setIsLoading] = useState(false);
-
-  // const handleCheckboxChange = (value) => {
-  //   const updatedMaterialSeries = [...formData.material_series];
-
-  //   if (updatedMaterialSeries.includes(value)) {
-  //     // If the value is already present, remove it
-  //     updatedMaterialSeries.splice(updatedMaterialSeries.indexOf(value), 1);
-  //   } else {
-  //     // If the value is not present, add it
-  //     updatedMaterialSeries.push(value);
-  //   }
-  //   setFormData((prevData) => ({
-  //     ...prevData,
-  //     material_series: updatedMaterialSeries,
-  //   }));
-  // };
 
   const handleInputChange = (fieldName, value) => {
     setFormData((prevData) => ({
@@ -52,6 +38,7 @@ const AcknowledgeForm = () => {
     const formDataWithTimestamp = {
       ...formData,
       timestamp: formatTimestamp(new Date()),
+      serial_no: serailNoRef.current,
     };
     console.log(formDataWithTimestamp);
     setIsLoading(true);
@@ -60,9 +47,10 @@ const AcknowledgeForm = () => {
       // await axios.post("http://localhost:5000/api/acknowledge-form", formData);
       await axios.post(
         "https://giant-cyan-camel.cyclic.app/api/acknowledge-form",
-        formData
+        formDataWithTimestamp
       );
       console.log("Form submitted successfully!");
+      serailNoRef.current = serailNoRef.current + 1;
       // Add any additional logic or redirect here
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -71,11 +59,31 @@ const AcknowledgeForm = () => {
     alert(" Acknowledge Form Submitted Successfully");
     setFormData(intialFormData);
   };
+
+  useEffect(() => {
+    setIsLoading(true);
+    const fetchData = async () => {
+      try {
+        const result = await fetchDataFromApi(
+          "https://giant-cyan-camel.cyclic.app/api/form-no"
+        );
+        serailNoRef.current = result.nextSerialNo;
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setIsLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <form onSubmit={handleSubmit} className="Rfq_form">
       <h1>RFQ Acknowledgement</h1>
       {isLoading && <Loader />}
       <div className="rfq__submit">
+        <div>
+          <label>form number : {serailNoRef.current}</label>
+        </div>
         <InputBox
           label="USER NAME"
           id="usr_name"
@@ -170,3 +178,19 @@ export const formatTimestamp = (timestamp) => {
   // Remove the comma between date and time
   return `${formattedTime.replace(",", "")}`;
 };
+
+// export const handleCheckboxChange = (value) => {
+//   const updatedMaterialSeries = [...formData.material_series];
+
+//   if (updatedMaterialSeries.includes(value)) {
+//     // If the value is already present, remove it
+//     updatedMaterialSeries.splice(updatedMaterialSeries.indexOf(value), 1);
+//   } else {
+//     // If the value is not present, add it
+//     updatedMaterialSeries.push(value);
+//   }
+//   setFormData((prevData) => ({
+//     ...prevData,
+//     material_series: updatedMaterialSeries,
+//   }));
+// };
