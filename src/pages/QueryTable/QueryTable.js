@@ -14,7 +14,7 @@ const QueryTable = () => {
 
   const columnDefs = [
     {
-      headerName: "Serial Number",
+      headerName: "S.No",
       field: "serial_no",
       sortable: true,
       filter: true,
@@ -23,6 +23,8 @@ const QueryTable = () => {
         debounceMs: 0,
         buttons: ["reset"],
       },
+      sort: "desc",
+      width: 85,
     },
     {
       headerName: "Timestamp",
@@ -34,6 +36,7 @@ const QueryTable = () => {
         debounceMs: 0,
         buttons: ["reset"],
       },
+      width: 165,
     },
     {
       headerName: "RFQ Number",
@@ -45,6 +48,7 @@ const QueryTable = () => {
         debounceMs: 0,
         buttons: ["reset"],
       },
+      width: 300,
     },
     {
       headerName: "Start Date",
@@ -56,6 +60,7 @@ const QueryTable = () => {
         debounceMs: 0,
         buttons: ["reset"],
       },
+      width: 100,
     },
     {
       headerName: "End Date",
@@ -67,6 +72,7 @@ const QueryTable = () => {
         debounceMs: 0,
         buttons: ["reset"],
       },
+      width: 100,
     },
     {
       headerName: "Buyer",
@@ -78,6 +84,7 @@ const QueryTable = () => {
         debounceMs: 0,
         buttons: ["reset"],
       },
+      width: 150,
     },
     {
       headerName: "Buyer Number",
@@ -89,6 +96,7 @@ const QueryTable = () => {
         debounceMs: 0,
         buttons: ["reset"],
       },
+      width: 120,
     },
     {
       headerName: "Scope",
@@ -112,6 +120,7 @@ const QueryTable = () => {
         debounceMs: 0,
         buttons: ["reset"],
       },
+      width: 80,
     },
     {
       headerName: "Bid Type",
@@ -123,6 +132,7 @@ const QueryTable = () => {
         debounceMs: 0,
         buttons: ["reset"],
       },
+      width: 100,
     },
     {
       headerName: "User Name",
@@ -134,6 +144,7 @@ const QueryTable = () => {
         debounceMs: 0,
         buttons: ["reset"],
       },
+      width: 100,
     },
   ];
 
