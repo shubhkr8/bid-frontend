@@ -29,11 +29,10 @@ export const appRouter = createBrowserRouter([
         path: "/rfqtable",
         element: <QueryTable />,
       },
+      {
+        path: "/login",
+        element: <Login />,
+      },
     ],
-  },
-  {
-    path: "/login",
-    element: <Login />,
-    errorElement: <h1>error</h1>,
   },
 ]);

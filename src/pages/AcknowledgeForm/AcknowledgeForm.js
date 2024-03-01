@@ -97,6 +97,7 @@ const AcknowledgeForm = () => {
           type="text"
           value={formData.rfq_no}
           onChange={(e) => handleInputChange("rfq_no", e.target.value)}
+          required
         />
         <InputBox
           label="RFQ START"
