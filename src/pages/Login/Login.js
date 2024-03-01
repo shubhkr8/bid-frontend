@@ -3,6 +3,7 @@ import "./Login.css";
 import InputBox from "../../components/InputBox/InputBox";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Loader from "../../loader/Loader";
 import { useUserContext } from "../../App";
 
 const intialLoginData = {
@@ -13,6 +14,7 @@ const intialLoginData = {
 const Login = () => {
   const [loginData, setLoginData] = useState(intialLoginData);
   const { setIsLogin, setRole } = useUserContext();
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const handleInputChange = (fieldName, value) => {
     setLoginData((prevData) => ({
@@ -23,6 +25,7 @@ const Login = () => {
 
   const handleLoginSubmit = async () => {
     console.log(loginData);
+    setIsLoading(true);
     try {
       // const response = await axios.post(
       //   "http://localhost:5000/api/login",
@@ -35,11 +38,14 @@ const Login = () => {
       const { role } = response.data;
       setIsLogin(true);
       setRole(role);
+      setIsLoading(false);
       navigate("/");
     } catch (error) {
       console.log("Error submitting form:", error);
+      setIsLoading(false);
       alert(error.response.data);
     }
+    setIsLoading(false);
     setLoginData(intialLoginData);
   };
 
@@ -47,6 +53,7 @@ const Login = () => {
     <div className="Login">
       <div className="Login__container">
         <h1>Login</h1>
+        {isLoading && <Loader />}
         <form className="Login__form">
           <InputBox
             label="USER NAME"
