@@ -2,7 +2,7 @@ import React from "react";
 import "./InputBox.css";
 
 const InputBox = (props) => {
-  const { id, value, type, label, placeholder, onChange } = props;
+  const { id, value, type, label, placeholder, onChange, required } = props;
 
   return (
     <div className="InputBox" id={`InputBox__${id}`}>
@@ -13,6 +13,7 @@ const InputBox = (props) => {
         value={value}
         placeholder={placeholder}
         onChange={onChange}
+        required={required}
       />
       <label htmlFor={id} className="InputBox-label">
         {label}

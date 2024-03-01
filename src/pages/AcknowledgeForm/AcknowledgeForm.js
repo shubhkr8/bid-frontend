@@ -81,8 +81,8 @@ const AcknowledgeForm = () => {
       <h1>RFQ Acknowledgement</h1>
       {isLoading && <Loader />}
       <div className="rfq__submit">
-        <div>
-          <label>form number : {serailNoRef.current}</label>
+        <div className="form_number">
+          <label>FORM NUMBER : {serailNoRef.current}</label>
         </div>
         <InputBox
           label="USER NAME"
@@ -97,6 +97,7 @@ const AcknowledgeForm = () => {
           type="text"
           value={formData.rfq_no}
           onChange={(e) => handleInputChange("rfq_no", e.target.value)}
+          required
         />
         <InputBox
           label="RFQ START"
