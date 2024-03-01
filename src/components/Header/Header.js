@@ -10,6 +10,7 @@ function Header() {
         <Link to="/rfqack">Acknowledge</Link>
         <Link to="/rfqsubmit">Submit</Link>
         <Link to="/rfqtable">Query</Link>
+        <Link to="/login">Login</Link>
       </div>
     </div>
   );

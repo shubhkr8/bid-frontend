@@ -5,6 +5,7 @@ import SubmitForm from "../pages/SubmitForm/SubmitForm";
 import AcknowledgeForm from "../pages/AcknowledgeForm/AcknowledgeForm";
 import QueryTable from "../pages/QueryTable/QueryTable";
 import Home from "../pages/Home/Home";
+import Login from "../pages/Login/Login";
 
 export const appRouter = createBrowserRouter([
   {
@@ -29,5 +30,10 @@ export const appRouter = createBrowserRouter([
         element: <QueryTable />,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+    errorElement: <h1>error</h1>,
   },
 ]);
