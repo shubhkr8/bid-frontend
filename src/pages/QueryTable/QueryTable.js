@@ -36,7 +36,7 @@ const QueryTable = () => {
         debounceMs: 0,
         buttons: ["reset"],
       },
-      width: 165,
+      width: 160,
     },
     {
       headerName: "RFQ Number",
@@ -96,7 +96,7 @@ const QueryTable = () => {
         debounceMs: 0,
         buttons: ["reset"],
       },
-      width: 120,
+      width: 113,
     },
     {
       headerName: "Scope",
