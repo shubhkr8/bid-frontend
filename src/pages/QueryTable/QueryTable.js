@@ -5,148 +5,13 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 import axios from "axios";
 import "./QueryTable.css";
 import Loader from "../../loader/Loader";
+import { COLUMNDEFS } from "../../utils/Constant";
 
 // const localurl = "http://localhost:5000/api/ack-data";
 
 const QueryTable = () => {
   const [rowData, setRowData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  const columnDefs = [
-    {
-      headerName: "S.No",
-      field: "serial_no",
-      sortable: true,
-      filter: true,
-      floatingFilter: true,
-      filterParams: {
-        debounceMs: 0,
-        buttons: ["reset"],
-      },
-      sort: "desc",
-      width: 85,
-    },
-    {
-      headerName: "Timestamp",
-      field: "timestamp",
-      sortable: true,
-      filter: true,
-      floatingFilter: true,
-      filterParams: {
-        debounceMs: 0,
-        buttons: ["reset"],
-      },
-      width: 160,
-    },
-    {
-      headerName: "RFQ Number",
-      field: "rfq_no",
-      sortable: true,
-      filter: true,
-      floatingFilter: true,
-      filterParams: {
-        debounceMs: 0,
-        buttons: ["reset"],
-      },
-      width: 300,
-    },
-    {
-      headerName: "Start Date",
-      field: "rfq_start_date",
-      sortable: true,
-      filter: true,
-      floatingFilter: true,
-      filterParams: {
-        debounceMs: 0,
-        buttons: ["reset"],
-      },
-      width: 100,
-    },
-    {
-      headerName: "End Date",
-      field: "rfq_end_date",
-      sortable: true,
-      filter: true,
-      floatingFilter: true,
-      filterParams: {
-        debounceMs: 0,
-        buttons: ["reset"],
-      },
-      width: 100,
-    },
-    {
-      headerName: "Buyer",
-      field: "buyer",
-      sortable: true,
-      filter: true,
-      floatingFilter: true,
-      filterParams: {
-        debounceMs: 0,
-        buttons: ["reset"],
-      },
-      width: 150,
-    },
-    {
-      headerName: "Buyer Number",
-      field: "buyer_no",
-      sortable: true,
-      filter: true,
-      floatingFilter: true,
-      filterParams: {
-        debounceMs: 0,
-        buttons: ["reset"],
-      },
-      width: 113,
-    },
-    {
-      headerName: "Scope",
-      field: "scope",
-      sortable: true,
-      filter: true,
-      floatingFilter: true,
-      filterParams: {
-        debounceMs: 0,
-        buttons: ["reset"],
-      },
-    },
-
-    {
-      headerName: "Material Line Items",
-      field: "material_line_items",
-      sortable: true,
-      filter: true,
-      floatingFilter: true,
-      filterParams: {
-        debounceMs: 0,
-        buttons: ["reset"],
-      },
-      width: 80,
-    },
-    {
-      headerName: "Bid Type",
-      field: "bid_type",
-      sortable: true,
-      filter: true,
-      floatingFilter: true,
-      filterParams: {
-        debounceMs: 0,
-        buttons: ["reset"],
-      },
-      width: 100,
-    },
-    {
-      headerName: "User Name",
-      field: "usr_name",
-      sortable: true,
-      filter: true,
-      floatingFilter: true,
-      filterParams: {
-        debounceMs: 0,
-        buttons: ["reset"],
-      },
-      width: 100,
-    },
-  ];
 
   useEffect(() => {
     setIsLoading(true);
@@ -192,7 +57,7 @@ const QueryTable = () => {
       {isLoading && <Loader />}
       <div className="ag-theme-alpine" style={{ height: 600, width: "100%" }}>
         <AgGridReact
-          columnDefs={columnDefs}
+          columnDefs={COLUMNDEFS}
           rowData={rowData}
           rowSelection={rowSelectionType}
           onSelectionChanged={onSelectionChanged}

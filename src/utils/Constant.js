@@ -25,3 +25,139 @@ export const VENDOR_ID_OPTION = [
 ];
 
 export const MATERIAL_SERIES_LIST = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+export const COLUMNDEFS = [
+  {
+    headerName: "S.No",
+    field: "serial_no",
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    filterParams: {
+      debounceMs: 0,
+      buttons: ["reset"],
+    },
+    sort: "desc",
+    width: 85,
+  },
+  {
+    headerName: "Timestamp",
+    field: "timestamp",
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    filterParams: {
+      debounceMs: 0,
+      buttons: ["reset"],
+    },
+    width: 160,
+  },
+  {
+    headerName: "RFQ Number",
+    field: "rfq_no",
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    filterParams: {
+      debounceMs: 0,
+      buttons: ["reset"],
+    },
+    width: 300,
+  },
+  {
+    headerName: "Start Date",
+    field: "rfq_start_date",
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    filterParams: {
+      debounceMs: 0,
+      buttons: ["reset"],
+    },
+    width: 100,
+  },
+  {
+    headerName: "End Date",
+    field: "rfq_end_date",
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    filterParams: {
+      debounceMs: 0,
+      buttons: ["reset"],
+    },
+    width: 100,
+  },
+  {
+    headerName: "Buyer",
+    field: "buyer",
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    filterParams: {
+      debounceMs: 0,
+      buttons: ["reset"],
+    },
+    width: 150,
+  },
+  {
+    headerName: "Buyer Number",
+    field: "buyer_no",
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    filterParams: {
+      debounceMs: 0,
+      buttons: ["reset"],
+    },
+    width: 113,
+  },
+  {
+    headerName: "Scope",
+    field: "scope",
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    filterParams: {
+      debounceMs: 0,
+      buttons: ["reset"],
+    },
+  },
+
+  {
+    headerName: "Material Line Items",
+    field: "material_line_items",
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    filterParams: {
+      debounceMs: 0,
+      buttons: ["reset"],
+    },
+    width: 80,
+  },
+  {
+    headerName: "Bid Type",
+    field: "bid_type",
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    filterParams: {
+      debounceMs: 0,
+      buttons: ["reset"],
+    },
+    width: 100,
+  },
+  {
+    headerName: "User Name",
+    field: "usr_name",
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    filterParams: {
+      debounceMs: 0,
+      buttons: ["reset"],
+    },
+    width: 100,
+  },
+];
