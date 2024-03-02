@@ -11,11 +11,17 @@ function Header() {
         </Link>
       </div>
       <div className="header_links">
-        <Link to="/rfqack">Acknowledge</Link>
-        {isLogin && (
-          <>
-            <Link to="/rfqsubmit">Submit</Link>
-            {role === "admin" ? <Link to="/rfqtable">Query</Link> : null}
+        <div className="header_left-links">
+          <Link to="/rfqack">Acknowledge</Link>
+          {isLogin && (
+            <>
+              <Link to="/rfqsubmit">Submit</Link>
+              {role === "admin" ? <Link to="/rfqtable">Query</Link> : null}
+            </>
+          )}
+        </div>
+        <div className="header_right-links">
+          {isLogin ? (
             <Link
               to="/login"
               onClick={() => {
@@ -25,11 +31,10 @@ function Header() {
             >
               Logout
             </Link>
-          </>
-        )}
-
-        {}
-        {!isLogin && <Link to="/login">Login</Link>}
+          ) : (
+            <Link to="/login">Login</Link>
+          )}
+        </div>
       </div>
     </div>
   );

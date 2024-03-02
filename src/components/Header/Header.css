@@ -1,12 +1,12 @@
 .header_components {
   display: flex;
   flex: 1;
-  height: 10vh;
+  height: 3.5rem;
   align-items: center;
   justify-content: center;
   background-color: black;
   color: white;
-  padding: 0 2rem;
+  padding: 0 4rem;
 }
 h1 {
   margin: 0px auto;
@@ -15,7 +15,7 @@ h1 {
 .header_links {
   display: flex;
   flex: 2;
-  justify-content: center;
+  justify-content: space-between;
   gap: 2rem;
   color: white;
   text-decoration: none;
@@ -30,4 +30,11 @@ h1 {
   a:active {
     color: grey;
   }
+}
+
+.header_left-links {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
 }

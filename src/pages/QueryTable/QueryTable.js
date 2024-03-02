@@ -51,19 +51,22 @@ const QueryTable = () => {
 
   return (
     <div>
-      <button className="button-29" onClick={() => onExportClick()}>
-        Export
-      </button>
+      <div className="table__top">
+        <button className="export-button" onClick={() => onExportClick()}>
+          Export
+        </button>
+      </div>
       {isLoading && <Loader />}
-      <div className="ag-theme-alpine" style={{ height: 600, width: "100%" }}>
+      <div
+        className="ag-theme-alpine"
+        style={{ width: "100%", height: "86vh" }}
+      >
         <AgGridReact
           columnDefs={COLUMNDEFS}
           rowData={rowData}
           rowSelection={rowSelectionType}
           onSelectionChanged={onSelectionChanged}
           onGridReady={onGridReady}
-          // frameworkComponents={{ valueCellRenderer }}
-          // onGridReady
         />
       </div>
     </div>
