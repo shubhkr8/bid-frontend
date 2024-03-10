@@ -2,9 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import "./AcknowledgeForm.css";
 import axios from "axios";
 import InputBox from "../../components/InputBox/InputBox";
-// import InputSelect from "../../components/InputSelect/InputSelect";
-// import InputCheckbox from "../../components/InputCheckbox/InputCheckbox";
-// import { BID_TYPE_OPTION, MATERIAL_SERIES_LIST } from "../../utils/Constant";
 import Loader from "../../loader/Loader";
 import { fetchDataFromApi } from "../QueryTable/QueryTable";
 
@@ -82,7 +79,9 @@ const AcknowledgeForm = () => {
       {isLoading && <Loader />}
       <div className="rfq__submit">
         <div className="form_number">
-          <label>FORM NUMBER : {serailNoRef.current}</label>
+          <label>
+            FORM NUMBER : <span id="form_number_id">{serailNoRef.current}</span>
+          </label>
         </div>
         <InputBox
           label="USER NAME"
