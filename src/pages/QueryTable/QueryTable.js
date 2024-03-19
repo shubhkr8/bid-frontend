@@ -1,13 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
-import { AgGridReact } from "ag-grid-react";
-import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-alpine.css";
-import axios from "axios";
-import "./QueryTable.css";
-import Loader from "../../loader/Loader";
-import { COLUMNDEFS } from "../../utils/Constant";
-
-// const localurl = "http://localhost:5000/api/ack-data";
+import React, { useState, useEffect, useRef } from 'react';
+import { AgGridReact } from 'ag-grid-react';
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-alpine.css';
+import axios from 'axios';
+import './QueryTable.css';
+import Loader from '../../loader/Loader';
+import { COLUMNDEFS } from '../../utils/Constant';
+import { renderApiAck } from '../../utils/apiEndPoints';
 
 const QueryTable = () => {
   const [rowData, setRowData] = useState([]);
@@ -17,20 +16,18 @@ const QueryTable = () => {
     setIsLoading(true);
     const fetchData = async () => {
       try {
-        const result = await fetchDataFromApi(
-          "https://giant-cyan-camel.cyclic.app/api/ack-data"
-        );
+        const result = await fetchDataFromApi(renderApiAck);
         setRowData(result);
         setIsLoading(false);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error);
         setIsLoading(false);
       }
     };
     fetchData();
   }, []);
 
-  const rowSelectionType = "multiple";
+  const rowSelectionType = 'multiple';
   const onSelectionChanged = (event) => {
     console.log(event);
   };
@@ -45,21 +42,21 @@ const QueryTable = () => {
     if (gridApiRef.current) {
       gridApiRef.current.exportDataAsCsv();
     } else {
-      console.error("Grid API is not initialized.");
+      console.error('Grid API is not initialized.');
     }
   };
 
   return (
     <div>
-      <div className="table__top">
-        <button className="export-button" onClick={() => onExportClick()}>
+      <div className='table__top'>
+        <button className='export-button' onClick={() => onExportClick()}>
           Export
         </button>
       </div>
       {isLoading && <Loader />}
       <div
-        className="ag-theme-alpine"
-        style={{ width: "100%", height: "86vh" }}
+        className='ag-theme-alpine'
+        style={{ width: '100%', height: '86vh' }}
       >
         <AgGridReact
           columnDefs={COLUMNDEFS}
