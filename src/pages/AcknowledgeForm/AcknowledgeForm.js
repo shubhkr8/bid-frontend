@@ -16,6 +16,7 @@ const intialFormData = {
   material_line_items: '',
   bid_type: '',
   usr_name: '',
+  sys_name: '',
 };
 
 const AcknowledgeForm = () => {
@@ -84,6 +85,13 @@ const AcknowledgeForm = () => {
           type='text'
           value={formData.usr_name}
           onChange={(e) => handleInputChange('usr_name', e.target.value)}
+        />
+        <InputBox
+          label='SYSTEM NAME'
+          id='sys_name'
+          type='text'
+          value={formData.sys_name}
+          onChange={(e) => handleInputChange('sys_name', e.target.value)}
         />
         <InputBox
           label='RFQ NO'
