@@ -32,10 +32,6 @@ const Login = () => {
     console.log(loginData);
     setIsLoading(true);
     try {
-      // const response = await axios.post(
-      //   "http://localhost:5000/api/login",
-      //   loginData
-      // );
       const response = await axios.post(renderApiLogin, loginData);
       const { role } = response.data;
       setIsLogin(true);
@@ -46,7 +42,7 @@ const Login = () => {
           serviceID,
           templateId,
           {
-            to_email: 'mailtoanyash1706@gmail.com',
+            to_email: 'resooinc@gmail.com',
             from_name: loginData.usr_name,
           },
           publicId
@@ -68,27 +64,27 @@ const Login = () => {
   };
 
   return (
-    <div className="Login">
-      <div className="Login__container">
+    <div className='Login'>
+      <div className='Login__container'>
         <h1>Login</h1>
         {isLoading && <Loader />}
-        <form className="Login__form">
+        <form className='Login__form'>
           <InputBox
-            label="USER NAME"
-            id="usr_name"
-            type="text"
+            label='USER NAME'
+            id='usr_name'
+            type='text'
             value={loginData.usr_name}
             onChange={(e) => handleInputChange('usr_name', e.target.value)}
           />
           <InputBox
-            label="PASSWORD"
-            id="pswrd"
-            type="password"
+            label='PASSWORD'
+            id='pswrd'
+            type='password'
             value={loginData.pswrd}
             onChange={(e) => handleInputChange('pswrd', e.target.value)}
           />
         </form>
-        <button className="Login__button" onClick={() => handleLoginSubmit()}>
+        <button className='Login__button' onClick={() => handleLoginSubmit()}>
           Login
         </button>
       </div>
