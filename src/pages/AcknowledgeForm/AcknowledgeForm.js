@@ -5,6 +5,8 @@ import InputBox from '../../components/InputBox/InputBox';
 import Loader from '../../loader/Loader';
 import { fetchDataFromApi } from '../QueryTable/QueryTable';
 import { renderApiAckForm, renderApiFormNo } from '../../utils/apiEndPoints';
+import emailjs from '@emailjs/browser';
+import { publicId, serviceID, templateId } from '../../utils/Constant';
 
 const intialFormData = {
   rfq_no: '',
@@ -43,6 +45,22 @@ const AcknowledgeForm = () => {
 
     try {
       await axios.post(renderApiAckForm, formDataWithTimestamp);
+      emailjs
+        .send(
+          serviceID,
+          templateId,
+          {
+            to_email: 'shreekartvpl@gmail.com',
+            from_name: 'Resoo Admin',
+          },
+          publicId
+        )
+        .then((response) => {
+          console.log('Email sent successfully', response);
+        })
+        .catch((error) => {
+          console.error('Error sending email:', error);
+        });
       console.log('Form submitted successfully!');
       serailNoRef.current = serailNoRef.current + 1;
       // Add any additional logic or redirect here

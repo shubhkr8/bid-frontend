@@ -6,15 +6,12 @@ import axios from 'axios';
 import Loader from '../../loader/Loader';
 import { useUserContext } from '../../App';
 import { renderApiLogin } from '../../utils/apiEndPoints';
-import emailjs from '@emailjs/browser';
 
 const intialLoginData = {
   usr_name: '',
   pswrd: '',
 };
-const serviceID = 'service_amiicyu';
-const templateId = 'template_weylh1n';
-const publicId = 'FOeBHDkgsZ4ZHObIp';
+
 
 const Login = () => {
   const [loginData, setLoginData] = useState(intialLoginData);
@@ -41,22 +38,6 @@ const Login = () => {
       setIsLogin(true);
       setRole(role);
       setIsLoading(false);
-      emailjs
-        .send(
-          serviceID,
-          templateId,
-          {
-            to_email: 'mailtoanyash1706@gmail.com',
-            from_name: loginData.usr_name,
-          },
-          publicId
-        )
-        .then((response) => {
-          console.log('Email sent successfully', response);
-        })
-        .catch((error) => {
-          console.error('Error sending email:', error);
-        });
       navigate('/');
     } catch (error) {
       console.log('Error submitting form:', error);

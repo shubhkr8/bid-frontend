@@ -8,6 +8,10 @@ export const FRIEGHT_OPTION = [
 
 export const BID_TYPE_OPTION = ["public", "private", "Dummy Bid"];
 
+export const serviceID = 'service_qvbq8wp';
+export const templateId = 'template_8vg6lgj';
+export const publicId = 'lzLvVm1tdVA_gJo4g';
+
 export const VENDOR_ID_OPTION = [
   "LZ",
   "HT",
