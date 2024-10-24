@@ -21,7 +21,7 @@ const intialFormData = {
 };
 
 const AcknowledgeForm = () => {
-  const serailNoRef = useRef(0);
+  const [serailNo, setSerialNumber] = useState('');
   const formref = useRef();
   const [formData, setFormData] = useState(intialFormData);
   const [isLoading, setIsLoading] = useState(false);
@@ -39,19 +39,22 @@ const AcknowledgeForm = () => {
     const formDataWithTimestamp = {
       ...formData,
       timestamp: formatTimestamp(new Date()),
-      serial_no: serailNoRef.current,
+      serial_no: serailNo,
     };
-    console.log(formDataWithTimestamp);
+    console.log('form data', formDataWithTimestamp);
     setIsLoading(true);
 
     try {
       await axios.post(renderApiAckForm, formDataWithTimestamp);
       emailjs
-        .send(
+        .sendForm(
           serviceID,
           templateId,
           formref.current,
-          publicId
+          {
+            publicKey: publicId,
+          }
+
         )
         .then((response) => {
           console.log('Email sent successfully', response);
@@ -60,7 +63,7 @@ const AcknowledgeForm = () => {
           console.error('Error sending email:', error);
         });
       console.log('Form submitted successfully!');
-      serailNoRef.current = serailNoRef.current + 1;
+      setSerialNumber(prev => prev + 1);
       // Add any additional logic or redirect here
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -75,7 +78,7 @@ const AcknowledgeForm = () => {
     const fetchData = async () => {
       try {
         const result = await fetchDataFromApi(renderApiFormNo);
-        serailNoRef.current = result.nextSerialNo;
+        setSerialNumber(result.nextSerialNo);
         setIsLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -91,7 +94,7 @@ const AcknowledgeForm = () => {
       <div className='rfq__submit'>
         <div className='form_number'>
           <label>
-            FORM NUMBER : <span id='form_number_id' name='sr_number'>{serailNoRef.current}</span>
+            FORM NUMBER : <input id='form_number_id' name='sr_number' value={serailNo} onChange={(e) => setSerialNumber(e.target.value)} readOnly />
           </label>
         </div>
         <InputBox
