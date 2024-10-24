@@ -52,8 +52,8 @@ const AcknowledgeForm = () => {
           {
             to_email: 'shreekartvpl@gmail.com',
             from_name: 'Resoo Admin',
-            sr_no: formDataWithTimestamp.serial_no,
-            rfq_number: formDataWithTimestamp.rfq_no
+            sr_no: formDataWithTimestamp?.serial_no,
+            rfq_number: formDataWithTimestamp?.rfq_no
           },
           publicId
         )
