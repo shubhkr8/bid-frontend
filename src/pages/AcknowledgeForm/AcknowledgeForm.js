@@ -42,6 +42,8 @@ const AcknowledgeForm = () => {
     };
     console.log(formDataWithTimestamp);
     setIsLoading(true);
+    const emailSerialNo = formDataWithTimestamp?.serial_no;
+    const emailRFQNo = formDataWithTimestamp?.rfq_no;
 
     try {
       await axios.post(renderApiAckForm, formDataWithTimestamp);
@@ -52,8 +54,8 @@ const AcknowledgeForm = () => {
           {
             to_email: 'shreekartvpl@gmail.com',
             from_name: 'Resoo Admin',
-            sr_no: formDataWithTimestamp?.serial_no,
-            rfq_number: formDataWithTimestamp?.rfq_no
+            sr_no: emailSerialNo,
+            rfq_number: emailRFQNo
           },
           publicId
         )
