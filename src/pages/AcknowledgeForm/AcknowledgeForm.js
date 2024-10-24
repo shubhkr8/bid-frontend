@@ -22,6 +22,7 @@ const intialFormData = {
 
 const AcknowledgeForm = () => {
   const serailNoRef = useRef(0);
+  const formref = useRef();
   const [formData, setFormData] = useState(intialFormData);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -42,8 +43,6 @@ const AcknowledgeForm = () => {
     };
     console.log(formDataWithTimestamp);
     setIsLoading(true);
-    const emailSerialNo = formDataWithTimestamp?.serial_no;
-    const emailRFQNo = formDataWithTimestamp?.rfq_no;
 
     try {
       await axios.post(renderApiAckForm, formDataWithTimestamp);
@@ -51,12 +50,7 @@ const AcknowledgeForm = () => {
         .send(
           serviceID,
           templateId,
-          {
-            to_email: 'shreekartvpl@gmail.com',
-            from_name: 'Resoo Admin',
-            sr_no: emailSerialNo,
-            rfq_number: emailRFQNo
-          },
+          formref.current,
           publicId
         )
         .then((response) => {
@@ -91,18 +85,19 @@ const AcknowledgeForm = () => {
     fetchData();
   }, []);
   return (
-    <form onSubmit={handleSubmit} className='Rfq_form'>
+    <form ref={formref} onSubmit={handleSubmit} className='Rfq_form'>
       <h1>RFQ Acknowledgement</h1>
       {isLoading && <Loader />}
       <div className='rfq__submit'>
         <div className='form_number'>
           <label>
-            FORM NUMBER : <span id='form_number_id'>{serailNoRef.current}</span>
+            FORM NUMBER : <span id='form_number_id' name='sr_number'>{serailNoRef.current}</span>
           </label>
         </div>
         <InputBox
           label='USER NAME'
           id='usr_name'
+          name='usr_name'
           type='text'
           value={formData.usr_name}
           onChange={(e) => handleInputChange('usr_name', e.target.value)}
@@ -111,6 +106,7 @@ const AcknowledgeForm = () => {
           label='RFQ NO'
           id='rfq_no'
           type='text'
+          name='rfq_number'
           value={formData.rfq_no}
           onChange={(e) => handleInputChange('rfq_no', e.target.value)}
           required
