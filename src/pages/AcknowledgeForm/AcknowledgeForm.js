@@ -132,6 +132,7 @@ const AcknowledgeForm = () => {
           label='BUYER'
           id='buyer'
           type='text'
+          name='buyer'
           value={formData.buyer}
           onChange={(e) => handleInputChange('buyer', e.target.value)}
         />
@@ -146,6 +147,7 @@ const AcknowledgeForm = () => {
           label='SCOPE'
           id='scope'
           type='text'
+          name='scope'
           value={formData.scope}
           onChange={(e) => handleInputChange('scope', e.target.value)}
         />
