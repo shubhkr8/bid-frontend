@@ -21,7 +21,7 @@ const intialFormData = {
 };
 
 const AcknowledgeForm = () => {
-  const [serailNo, setSerialNumber] = useState('');
+  const serailNoRef = useRef(0);
   const formref = useRef();
   const [formData, setFormData] = useState(intialFormData);
   const [isLoading, setIsLoading] = useState(false);
@@ -39,7 +39,7 @@ const AcknowledgeForm = () => {
     const formDataWithTimestamp = {
       ...formData,
       timestamp: formatTimestamp(new Date()),
-      serial_no: serailNo,
+      serial_no: serailNoRef.current,
     };
     console.log('form data', formDataWithTimestamp);
     setIsLoading(true);
@@ -63,7 +63,7 @@ const AcknowledgeForm = () => {
           console.error('Error sending email:', error);
         });
       console.log('Form submitted successfully!');
-      setSerialNumber(prev => prev + 1);
+      serailNoRef.current = serailNoRef.current + 1;
       // Add any additional logic or redirect here
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -78,7 +78,7 @@ const AcknowledgeForm = () => {
     const fetchData = async () => {
       try {
         const result = await fetchDataFromApi(renderApiFormNo);
-        setSerialNumber(result.nextSerialNo);
+        serailNoRef.current = result.nextSerialNo;
         setIsLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -94,7 +94,7 @@ const AcknowledgeForm = () => {
       <div className='rfq__submit'>
         <div className='form_number'>
           <label>
-            FORM NUMBER : <input id='form_number_id' name='sr_number' value={serailNo} onChange={(e) => setSerialNumber(e.target.value)} readOnly />
+            FORM NUMBER : <span id='form_number_id' name='sr_number'>{serailNoRef.current}</span>
           </label>
         </div>
         <InputBox
