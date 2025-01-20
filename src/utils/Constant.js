@@ -165,3 +165,127 @@ export const COLUMNDEFS = [
     width: 100,
   },
 ];
+
+export const SUPPLIER_COLUMNDEFS = [
+  {
+    headerName: "S.No",
+    field: "serial_no",
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    filterParams: {
+      debounceMs: 0,
+      buttons: ["reset"],
+    },
+    sort: "desc",
+    width: 85,
+  },
+  {
+    headerName: "Timestamp",
+    field: "timestamp",
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    filterParams: {
+      debounceMs: 0,
+      buttons: ["reset"],
+    },
+    width: 140,
+  },
+  {
+    headerName: "Supplier Name",
+    field: "supplier_name",
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    filterParams: {
+      debounceMs: 0,
+      buttons: ["reset"],
+    },
+    width: 250,
+  },
+  {
+    headerName: "Phone Number",
+    field: "phone_no",
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    filterParams: {
+      debounceMs: 0,
+      buttons: ["reset"],
+    },
+    width: 100,
+  },
+  {
+    headerName: "Address",
+    field: "address",
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    filterParams: {
+      debounceMs: 0,
+      buttons: ["reset"],
+    },
+    width: 180,
+  },
+  {
+    headerName: "Materail-1",
+    field: "materail_1",
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    filterParams: {
+      debounceMs: 0,
+      buttons: ["reset"],
+    },
+    width: 150,
+  },
+  {
+    headerName: "Materail-2",
+    field: "materail_2",
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    filterParams: {
+      debounceMs: 0,
+      buttons: ["reset"],
+    },
+    width: 113,
+  },
+  {
+    headerName: "Materail-3",
+    field: "materail_3",
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    filterParams: {
+      debounceMs: 0,
+      buttons: ["reset"],
+    },
+  },
+
+  {
+    headerName: "Email",
+    field: "email",
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    filterParams: {
+      debounceMs: 0,
+      buttons: ["reset"],
+    },
+    width: 150,
+  },
+  {
+    headerName: "Tag",
+    field: "tag",
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    filterParams: {
+      debounceMs: 0,
+      buttons: ["reset"],
+    },
+    width: 100,
+  }
+];

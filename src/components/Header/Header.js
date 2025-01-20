@@ -13,10 +13,11 @@ function Header() {
       <div className="header_links">
         <div className="header_left-links">
           <Link to="/rfqack">Acknowledge</Link>
+          <Link to="/supplier">Supplier</Link>
           {isLogin && (
             <>
               <Link to="/rfqsubmit">Submit</Link>
-              {role === "admin" ? <Link to="/rfqtable">Query</Link> : null}
+              {role === "admin" ? <><Link to="/rfqtable">Query</Link><Link to="/supplier-table">Supplier Table</Link></> : null}
             </>
           )}
         </div>

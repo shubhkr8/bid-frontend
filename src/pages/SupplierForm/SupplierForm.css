@@ -1,0 +1,23 @@
+.Supplier_form {
+  padding: 2rem;
+  background-color: white;
+  width: fit-content;
+  margin: 2rem auto;
+  border-radius: 2rem;
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+.Supplier_form  .form_number {
+  display: flex;
+  align-items: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  color: rgb(62, 59, 59);
+  grid-column: 1 / span 2;
+}
+.form_number label {
+  margin: 10px;
+  font-weight: 700;
+}
