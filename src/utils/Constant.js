@@ -6,6 +6,8 @@ export const FRIEGHT_OPTION = [
   42, 43, 44, 45, 46, 47, 48, 49, 50,
 ];
 
+export const SUBMITTED_BY = ["bijay", "priyanka", "jyoti"];
+
 export const BID_TYPE_OPTION = ["public", "private", "Dummy Bid"];
 
 export const serviceID = 'service_qvbq8wp';
@@ -303,6 +305,18 @@ export const SUPPLIER_COLUMNDEFS = [
   {
     headerName: "Attachment",
     field: "attachment_link",
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    filterParams: {
+      debounceMs: 0,
+      buttons: ["reset"],
+    },
+    width: 100,
+  },
+  {
+    headerName: "Submitted By",
+    field: "submitted_by",
     sortable: true,
     filter: true,
     floatingFilter: true,

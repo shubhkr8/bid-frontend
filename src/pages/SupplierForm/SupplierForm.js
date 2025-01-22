@@ -5,6 +5,8 @@ import InputBox from '../../components/InputBox/InputBox';
 import Loader from '../../loader/Loader';
 import { fetchDataFromApi } from '../QueryTable/QueryTable';
 import { renderApiSupplier, renderApiSupplierFormNo } from '../../utils/apiEndPoints';
+import { SUBMITTED_BY } from '../../utils/Constant';
+import InputSelect from '../../components/InputSelect/InputSelect';
 
 const intialFormData = {
   supplier_name: '',
@@ -17,6 +19,7 @@ const intialFormData = {
   tag: '',
   gst: '',
   attachment_link: '',
+  submitted_by: '',
 };
 
 const SupplierForm = () => {
@@ -160,6 +163,12 @@ const SupplierForm = () => {
           onChange={(e) =>
             handleInputChange('attachment_link', e.target.value)
           }
+        />
+        <InputSelect
+          label='Submitted By'
+          options={SUBMITTED_BY}
+          value={formData.submitted_by}
+          onChange={(e) => handleInputChange('submitted_by', e.target.value)}
         />
         <div className='rfq__submit_button'>
           <button type='submit' className='submit_button'>
