@@ -5,8 +5,9 @@ import InputBox from '../../components/InputBox/InputBox';
 import Loader from '../../loader/Loader';
 import { fetchDataFromApi } from '../QueryTable/QueryTable';
 import { renderApiSupplier, renderApiSupplierFormNo } from '../../utils/apiEndPoints';
-import { SUBMITTED_BY } from '../../utils/Constant';
+import { SUBMITTED_BY, TAG } from '../../utils/Constant';
 import InputSelect from '../../components/InputSelect/InputSelect';
+import InputCheckbox from '../../components/InputCheckbox/InputCheckbox';
 
 const intialFormData = {
   supplier_name: '',
@@ -32,6 +33,22 @@ const SupplierForm = () => {
     setFormData((prevData) => ({
       ...prevData,
       [fieldName]: value,
+    }));
+  };
+
+  const handleCheckboxChange = (value) => {
+    const updatedTag = [...formData.tag];
+
+    if (updatedTag.includes(value)) {
+      // If the value is already present, remove it
+      updatedTag.splice(updatedTag.indexOf(value), 1);
+    } else {
+      // If the value is not present, add it
+      updatedTag.push(value);
+    }
+    setFormData((prevData) => ({
+      ...prevData,
+      tag: updatedTag,
     }));
   };
 
@@ -129,6 +146,22 @@ const SupplierForm = () => {
           value={formData.materail_3}
           onChange={(e) => handleInputChange('materail_3', e.target.value)}
         />
+        <div className='rfq_material_series' id='InputBox__rfq_no'>
+          <label>TAG</label>
+          <div className='rfq_material_series_list'>
+            {TAG.map((item, index) => (
+              <InputCheckbox
+                key={index}
+                label={item}
+                id='tag'
+                type='checkbox'
+                value={item}
+                checked={formData.tag.includes(item)}
+                onChange={() => handleCheckboxChange(item)}
+              />
+            ))}
+          </div>
+        </div>
         <InputBox
           label='EMAIL'
           id='email'
@@ -136,15 +169,6 @@ const SupplierForm = () => {
           name='email'
           value={formData.email}
           onChange={(e) => handleInputChange('email', e.target.value)}
-        />
-        <InputBox
-          label='TAG'
-          id='tag'
-          type='text'
-          value={formData.tag}
-          onChange={(e) =>
-            handleInputChange('tag', e.target.value)
-          }
         />
         <InputBox
           label='GST'
