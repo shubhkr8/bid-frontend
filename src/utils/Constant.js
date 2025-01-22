@@ -287,5 +287,29 @@ export const SUPPLIER_COLUMNDEFS = [
       buttons: ["reset"],
     },
     width: 100,
+  },
+  {
+    headerName: "GST",
+    field: "gst",
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    filterParams: {
+      debounceMs: 0,
+      buttons: ["reset"],
+    },
+    width: 100,
+  },
+  {
+    headerName: "Attachment",
+    field: "attachment_link",
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    filterParams: {
+      debounceMs: 0,
+      buttons: ["reset"],
+    },
+    width: 100,
   }
 ];

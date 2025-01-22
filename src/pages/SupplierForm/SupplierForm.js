@@ -15,6 +15,8 @@ const intialFormData = {
   materail_3: '',
   email: '',
   tag: '',
+  gst: '',
+  attachment_link: '',
 };
 
 const SupplierForm = () => {
@@ -139,6 +141,24 @@ const SupplierForm = () => {
           value={formData.tag}
           onChange={(e) =>
             handleInputChange('tag', e.target.value)
+          }
+        />
+        <InputBox
+          label='GST'
+          id='gst'
+          type='text'
+          value={formData.gst}
+          onChange={(e) =>
+            handleInputChange('gst', e.target.value)
+          }
+        />
+        <InputBox
+          label='ATTACHMENT LINK'
+          id='attachment_link'
+          type='text'
+          value={formData.attachment_link}
+          onChange={(e) =>
+            handleInputChange('attachment_link', e.target.value)
           }
         />
         <div className='rfq__submit_button'>
