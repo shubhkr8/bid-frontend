@@ -5,7 +5,7 @@ import InputBox from '../../components/InputBox/InputBox';
 import Loader from '../../loader/Loader';
 import { fetchDataFromApi } from '../QueryTable/QueryTable';
 import { renderApiSupplier, renderApiSupplierFormNo } from '../../utils/apiEndPoints';
-import { SUBMITTED_BY, TAG } from '../../utils/Constant';
+import { SOURCE, SUBMITTED_BY, TAG } from '../../utils/Constant';
 import InputSelect from '../../components/InputSelect/InputSelect';
 import InputCheckbox from '../../components/InputCheckbox/InputCheckbox';
 
@@ -16,6 +16,7 @@ const intialFormData = {
   materail_1: '',
   materail_2: '',
   materail_3: '',
+  source: '',
   email: '',
   tag: '',
   gst: '',
@@ -132,7 +133,7 @@ const SupplierForm = () => {
           onChange={(e) => handleInputChange('materail_1', e.target.value)}
         />
         <InputBox
-          label='MATERIAL 2'
+          label='Service Name'
           id='materail_2'
           type='text'
           name='materail_2'
@@ -140,7 +141,7 @@ const SupplierForm = () => {
           onChange={(e) => handleInputChange('materail_2', e.target.value)}
         />
         <InputBox
-          label='MATERIAL 3'
+          label='Contact Person'
           id='materail_3'
           type='text'
           value={formData.materail_3}
@@ -157,6 +158,22 @@ const SupplierForm = () => {
                 type='checkbox'
                 value={item}
                 checked={formData.tag.includes(item)}
+                onChange={() => handleCheckboxChange(item)}
+              />
+            ))}
+          </div>
+        </div>
+        <div className='rfq_material_series' id=''>
+          <label>Source</label>
+          <div className='rfq_material_series_list'>
+            {SOURCE.map((item, index) => (
+              <InputCheckbox
+                key={index}
+                label={item}
+                id='source'
+                type='checkbox'
+                value={item}
+                checked={formData?.source?.includes(item)}
                 onChange={() => handleCheckboxChange(item)}
               />
             ))}
@@ -193,6 +210,7 @@ const SupplierForm = () => {
           options={SUBMITTED_BY}
           value={formData.submitted_by}
           onChange={(e) => handleInputChange('submitted_by', e.target.value)}
+          required
         />
         <div className='rfq__submit_button'>
           <button type='submit' className='submit_button'>

@@ -6,7 +6,7 @@ export const FRIEGHT_OPTION = [
   42, 43, 44, 45, 46, 47, 48, 49, 50,
 ];
 
-export const SUBMITTED_BY = ["bijay", "priyanka", "jyoti"];
+export const SUBMITTED_BY = ["bijay", "priyanka", "jyoti", 'hina'];
 
 export const BID_TYPE_OPTION = ["public", "private", "Dummy Bid"];
 
@@ -33,6 +33,8 @@ export const VENDOR_ID_OPTION = [
 export const MATERIAL_SERIES_LIST = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 export const TAG = ["RMS", "OES", "Manufacturer", "OEM", "Wholesaler", "Auth Distributor", "Retailer", "Trader"];
+
+export const SOURCE = ["LN", "IM", "TI", "JD"];
 
 export const COLUMNDEFS = [
   {
@@ -245,7 +247,7 @@ export const SUPPLIER_COLUMNDEFS = [
     width: 150,
   },
   {
-    headerName: "Materail-2",
+    headerName: "Service Name",
     field: "materail_2",
     sortable: true,
     filter: true,
@@ -257,7 +259,7 @@ export const SUPPLIER_COLUMNDEFS = [
     width: 113,
   },
   {
-    headerName: "Materail-3",
+    headerName: "Contact Person",
     field: "materail_3",
     sortable: true,
     filter: true,
@@ -283,6 +285,18 @@ export const SUPPLIER_COLUMNDEFS = [
   {
     headerName: "Tag",
     field: "tag",
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    filterParams: {
+      debounceMs: 0,
+      buttons: ["reset"],
+    },
+    width: 100,
+  },
+  {
+    headerName: "Source",
+    field: "source",
     sortable: true,
     filter: true,
     floatingFilter: true,
