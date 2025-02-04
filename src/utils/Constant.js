@@ -196,7 +196,7 @@ export const SUPPLIER_COLUMNDEFS = [
       debounceMs: 0,
       buttons: ["reset"],
     },
-    width: 140,
+    width: 170,
   },
   {
     headerName: "Supplier Name",
@@ -220,7 +220,7 @@ export const SUPPLIER_COLUMNDEFS = [
       debounceMs: 0,
       buttons: ["reset"],
     },
-    width: 100,
+    width: 140,
   },
   {
     headerName: "Address",
